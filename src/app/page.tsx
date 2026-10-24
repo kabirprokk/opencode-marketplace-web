@@ -50,7 +50,7 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-6 pt-20 pb-16 text-center">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-xs font-mono text-cyan-400 mb-6 animate-pulse-glow">
               <span className="w-2 h-2 rounded-full bg-cyan-400" />
-              Made by OpenCode&apos;s own AI
+              Built with OpenCode AI
             </div>
             <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 animate-rise">
               Free <span className="text-gradient">Skills, Tools</span>
@@ -58,7 +58,7 @@ export default function Home() {
             </h1>
             <p className="text-lg md:text-xl text-dim max-w-2xl mx-auto mb-10 animate-rise">
               Browse and install community-built skills, agents, and commands.
-              100% free, 100% open source. Made by OpenCode&apos;s AI crew.
+              100% free, 100% open source. Built with OpenCode, by the community.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-rise">
               <a
@@ -139,12 +139,10 @@ export default function Home() {
         <section id="about" className="max-w-7xl mx-auto px-6 pb-20">
           <div className="glass rounded-2xl p-10">
             <h2 className="text-3xl font-bold mb-4">
-              Built by <span className="text-gradient">OpenCode&apos;s own AI</span>
+              Built with <span className="text-gradient">OpenCode AI</span>
             </h2>
             <p className="text-dim leading-relaxed max-w-3xl mb-6">
-              This marketplace was designed, coded, and deployed by OpenCode&apos;s AI Manager and its crew of
-              specialist agents — scout, builder, reviewer, and more. Every line of code, every package entry,
-              every pixel. Fully autonomous. Fully free. Fully open source.
+              This independent community project was built with OpenCode, the open-source AI coding agent. It is not an official Anomaly project. The registry, CLI, and website are open source, and anyone can contribute packages.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
               {[

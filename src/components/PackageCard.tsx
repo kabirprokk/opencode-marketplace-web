@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Package, getTypeColor, getTypeIcon } from "@/lib/registry";
+import { Package, getTypeIcon } from "@/lib/registry";
 
 export function PackageCard({ pkg }: { pkg: Package }) {
   const [copied, setCopied] = useState(false);
@@ -13,7 +13,14 @@ export function PackageCard({ pkg }: { pkg: Package }) {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const color = getTypeColor(pkg.type);
+  const typeClass: Record<string, string> = {
+    skill: "text-cyan-400",
+    agent: "text-violet-400",
+    command: "text-ok",
+    "skill-pack": "text-warn",
+    plugin: "text-cyan-400",
+    mcp: "text-violet-400",
+  };
 
   return (
     <div className="glass rounded-2xl p-6 hover:border-[rgba(49,229,255,0.3)] transition-all duration-300 hover:-translate-y-1 group">
@@ -24,7 +31,7 @@ export function PackageCard({ pkg }: { pkg: Package }) {
             <h3 className="font-bold text-lg text-white group-hover:text-cyan-400 transition-colors">
               {pkg.name}
             </h3>
-            <span className={`text-xs font-mono uppercase tracking-wider text-${color}-400`}>
+            <span className={`text-xs font-mono uppercase tracking-wider ${typeClass[pkg.type] || "text-cyan-400"}`}>
               {pkg.type}
             </span>
           </div>
@@ -47,10 +54,10 @@ export function PackageCard({ pkg }: { pkg: Package }) {
         ))}
       </div>
 
-      <div className="flex items-center justify-between pt-4 border-t border-[rgba(130,195,255,0.08)]">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-4 border-t border-[rgba(130,195,255,0.08)]">
         <span className="text-xs text-dim">by {pkg.author}</span>
-        <div className="flex items-center gap-2">
-          <code className="text-xs font-mono text-cyan-400 bg-[rgba(49,229,255,0.06)] px-2 py-1 rounded">
+        <div className="flex items-center gap-2 min-w-0">
+          <code className="text-xs font-mono text-cyan-400 bg-[rgba(49,229,255,0.06)] px-2 py-1 rounded truncate">
             {installCmd}
           </code>
           <button

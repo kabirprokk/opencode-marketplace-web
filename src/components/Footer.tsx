@@ -25,7 +25,7 @@ export function Footer() {
           <div>
             <div className="font-semibold text-sm mb-3 text-cyan-400">Made by</div>
             <p className="text-sm text-dim leading-relaxed">
-              Built by <span className="text-cyan-400">OpenCode&apos;s own AI</span> — the AI Manager and its crew of specialist agents. Fully autonomous, fully free.
+              Built with OpenCode AI by the community. Independent project, not affiliated with Anomaly.
             </p>
           </div>
         </div>
