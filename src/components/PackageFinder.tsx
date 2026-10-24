@@ -143,26 +143,35 @@ export function PackageFinder({ packages }: { packages: Package[] }) {
                 </div>
                 <span className="rounded-full border border-[var(--line)] px-2.5 py-1 font-mono text-[10px] text-[var(--muted)]">OPEN INDEX</span>
               </div>
-              <svg className="mt-4 h-auto w-full" viewBox="0 0 440 250" role="img" aria-labelledby="graph-title graph-desc">
-                <title id="graph-title">OCM community package map</title>
-                <desc id="graph-desc">A central open index connects to skills, agents, commands, and MCP servers.</desc>
+              <svg className="mt-4 h-auto w-full" viewBox="0 0 440 250" role="group" aria-labelledby="graph-title">
+                <title id="graph-title">Browse community packages by type</title>
                 <g fill="none" stroke="var(--line-strong)" strokeWidth="1.5">
                   <path d="M220 122 104 65M220 122 334 58M220 122 94 184M220 122 344 190" />
                   <path d="M104 65h-34M334 58h35M94 184h-32M344 190h35" strokeDasharray="3 6" />
                 </g>
                 <g fill="var(--surface-overlay)" stroke="var(--line-strong)" strokeWidth="1.5">
-                  <rect x="27" y="38" width="112" height="52" rx="8" />
-                  <rect x="301" y="32" width="112" height="52" rx="8" />
-                  <rect x="22" y="158" width="112" height="52" rx="8" />
-                  <rect x="306" y="164" width="112" height="52" rx="8" />
                   <rect x="165" y="86" width="110" height="72" rx="12" fill="var(--bg)" />
                 </g>
                 <g fill="var(--txt)" fontFamily="ui-monospace, monospace" fontSize="11" fontWeight="600" textAnchor="middle">
-                  <text x="83" y="68">SKILLS</text><text x="357" y="62">AGENTS</text>
-                  <text x="78" y="188">COMMANDS</text><text x="362" y="194">MCP SERVERS</text>
                   <text x="220" y="119" fontSize="10" fill="var(--muted)">COMMUNITY</text>
                   <text x="220" y="137" fontSize="16" fontWeight="700">OCM</text>
                 </g>
+                <a href="/marketplace?type=skill" aria-label="Browse all skills" tabIndex={0} className="group cursor-pointer focus-visible:outline-none">
+                  <rect x="27" y="38" width="112" height="52" rx="8" fill="var(--surface-overlay)" stroke="var(--line-strong)" strokeWidth="1.5" className="transition-colors group-hover:stroke-[var(--accent)] group-focus-visible:stroke-[var(--accent)]" />
+                  <text x="83" y="68" fill="var(--txt)" fontFamily="ui-monospace, monospace" fontSize="11" fontWeight="600" textAnchor="middle">SKILLS</text>
+                </a>
+                <a href="/marketplace?type=agent" aria-label="Browse all agents" tabIndex={0} className="group cursor-pointer focus-visible:outline-none">
+                  <rect x="301" y="32" width="112" height="52" rx="8" fill="var(--surface-overlay)" stroke="var(--line-strong)" strokeWidth="1.5" className="transition-colors group-hover:stroke-[var(--accent)] group-focus-visible:stroke-[var(--accent)]" />
+                  <text x="357" y="62" fill="var(--txt)" fontFamily="ui-monospace, monospace" fontSize="11" fontWeight="600" textAnchor="middle">AGENTS</text>
+                </a>
+                <a href="/marketplace?type=command" aria-label="Browse all commands" tabIndex={0} className="group cursor-pointer focus-visible:outline-none">
+                  <rect x="22" y="158" width="112" height="52" rx="8" fill="var(--surface-overlay)" stroke="var(--line-strong)" strokeWidth="1.5" className="transition-colors group-hover:stroke-[var(--accent)] group-focus-visible:stroke-[var(--accent)]" />
+                  <text x="78" y="188" fill="var(--txt)" fontFamily="ui-monospace, monospace" fontSize="11" fontWeight="600" textAnchor="middle">COMMANDS</text>
+                </a>
+                <a href="/marketplace?type=mcp" aria-label="Browse all MCP servers" tabIndex={0} className="group cursor-pointer focus-visible:outline-none">
+                  <rect x="306" y="164" width="112" height="52" rx="8" fill="var(--surface-overlay)" stroke="var(--line-strong)" strokeWidth="1.5" className="transition-colors group-hover:stroke-[var(--accent)] group-focus-visible:stroke-[var(--accent)]" />
+                  <text x="362" y="194" fill="var(--txt)" fontFamily="ui-monospace, monospace" fontSize="11" fontWeight="600" textAnchor="middle">MCP SERVERS</text>
+                </a>
               </svg>
               <div className="flex items-center justify-between border-t border-[var(--line)] pt-4 text-xs text-[var(--muted)]">
                 <span>{packages.length.toLocaleString()} listed packages</span>

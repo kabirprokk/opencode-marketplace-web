@@ -13,6 +13,8 @@ const TYPES: { value: PackageType | "all"; label: string }[] = [
   { value: "agent", label: "Agents" },
   { value: "command", label: "Commands" },
   { value: "skill-pack", label: "Skill packs" },
+  { value: "plugin", label: "Plugins" },
+  { value: "mcp", label: "MCP servers" },
 ];
 
 const PAGE_SIZE = 24;
