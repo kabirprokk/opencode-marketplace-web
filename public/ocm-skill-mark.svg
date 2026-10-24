@@ -1,6 +1,31 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none">
-  <rect width="40" height="40" rx="12" fill="#E8EAA4"/>
-  <circle cx="19.5" cy="20" r="11.5" stroke="#191A16" stroke-width="3.2" stroke-linecap="round" stroke-dasharray="56 17" transform="rotate(-42 19.5 20)"/>
-  <path d="m19.5 14.2 2.2 4.9 4.9 2.2-4.9 2.2-2.2 4.9-2.2-4.9-4.9-2.2 4.9-2.2 2.2-4.9Z" fill="#191A16"/>
-  <circle cx="30.4" cy="10.2" r="2" fill="#191A16"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-label="OCM Skill">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0F172A"/>
+      <stop offset="1" stop-color="#1E1B4B"/>
+    </linearGradient>
+    <linearGradient id="ring" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#22D3EE"/>
+      <stop offset="0.5" stop-color="#818CF8"/>
+      <stop offset="1" stop-color="#F472B6"/>
+    </linearGradient>
+    <linearGradient id="spark" x1="24" y1="20" x2="40" y2="44" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FDE68A"/>
+      <stop offset="1" stop-color="#FB7185"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1.6" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="64" height="64" rx="18" fill="url(#bg)"/>
+  <rect x="1" y="1" width="62" height="62" rx="17" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+  <!-- open ring: O -->
+  <path d="M32 10 A22 22 0 1 1 14.5 44" stroke="url(#ring)" stroke-width="5" stroke-linecap="round" fill="none" filter="url(#glow)"/>
+  <!-- inner arc: C -->
+  <path d="M46 22 A14 14 0 0 0 32 18" stroke="url(#ring)" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.55"/>
+  <!-- spark -->
+  <path d="M32 22 L34.6 29.4 L42 32 L34.6 34.6 L32 42 L29.4 34.6 L22 32 L29.4 29.4 Z" fill="url(#spark)" filter="url(#glow)"/>
+  <!-- orbit dot -->
+  <circle cx="49" cy="15" r="2.6" fill="#22D3EE" filter="url(#glow)"/>
 </svg>
