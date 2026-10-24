@@ -8,7 +8,6 @@
   --radius-xl: calc(var(--radius) + 4px);
   --radius-2xl: calc(var(--radius) + 8px);
   --font-sans: var(--font-inter), system-ui, sans-serif;
-  --font-display: var(--font-fraunces), Georgia, serif;
   --font-mono: ui-monospace, "SFMono-Regular", Consolas, monospace;
 }
 
@@ -37,10 +36,8 @@
   --accent-foreground: hsl(0 9% 7%);
   --mark-bg: var(--txt);
   --mark-fg: var(--bg);
-  --code-bg: hsl(62 100% 70% / 12%);
   --highlight: hsl(62 100% 90%);
   --highlight-text: hsl(0 9% 7%);
-  --shadow-md: 0 4px 16px hsl(0 100% 3% / 24%);
 }
 
 :root[data-theme="light"] {
@@ -57,10 +54,8 @@
   --accent-foreground: hsl(0 5% 12%);
   --mark-bg: var(--txt);
   --mark-fg: var(--bg);
-  --code-bg: hsl(62 84% 55% / 13%);
   --highlight: hsl(62 84% 88%);
   --highlight-text: hsl(0 5% 12%);
-  --shadow-md: 0 4px 16px hsl(0 5% 12% / 7%);
 }
 
 html,
@@ -83,16 +78,10 @@ body {
 
 ::selection { background: var(--highlight); color: var(--highlight-text); }
 
-.surface-overlay { background: var(--surface-overlay); }
-.code-bg { background: var(--code-bg); }
-.display-serif { font-family: var(--font-display); font-weight: 400; }
 .font-mono { font-family: var(--font-mono); }
 .theme-moon { display: none; }
 :root[data-theme="light"] .theme-sun { display: none; }
 :root[data-theme="light"] .theme-moon { display: block; }
-
-.animate-rise { animation: rise 400ms cubic-bezier(0.16, 1, 0.3, 1) both; }
-@keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

@@ -74,26 +74,6 @@ export function Header() {
         </Link>
 
         <nav className="hidden items-center gap-1 sm:flex">
-          <Link
-            href="/#packages"
-            className="rounded-md px-3 py-1.5 text-sm text-[var(--muted)] transition-colors hover:text-[var(--txt)]"
-          >
-            Browse
-          </Link>
-          <Link
-            href="/#about"
-            className="rounded-md px-3 py-1.5 text-sm text-[var(--muted)] transition-colors hover:text-[var(--txt)]"
-          >
-            About
-          </Link>
-          <a
-            href="https://github.com/kabirprokk/opencode-registry"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-md px-3 py-1.5 text-sm text-[var(--muted)] transition-colors hover:text-[var(--txt)]"
-          >
-            GitHub
-          </a>
           <a
             href="https://github.com/kabirprokk/opencode-marketplace"
             target="_blank"
@@ -107,12 +87,14 @@ export function Header() {
 
         <div className="flex items-center gap-2 sm:hidden">
           <ThemeToggle />
-          <Link
-            href="/#packages"
-            className="min-h-11 rounded-lg border border-[var(--line-strong)] px-3 py-2 text-xs font-semibold text-[var(--txt)]"
+          <a
+            href="https://github.com/kabirprokk/opencode-marketplace"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-h-11 items-center rounded-md bg-[var(--accent)] px-3 text-xs font-semibold text-[var(--accent-foreground)]"
           >
-            Browse
-          </Link>
+            Get CLI
+          </a>
         </div>
       </div>
     </header>
