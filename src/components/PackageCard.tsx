@@ -28,14 +28,14 @@ export function PackageCard({ pkg }: { pkg: Package }) {
   };
 
   return (
-    <article className="glass rounded-2xl p-5 sm:p-6 hover:border-[rgba(49,229,255,0.3)] transition-colors duration-150 group">
+    <article className="glass group rounded-2xl p-5 transition-[border-color,transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:border-[var(--line-strong)] hover:shadow-[var(--shadow)] sm:p-6">
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center gap-3">
           <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-[rgba(49,229,255,0.16)] bg-[rgba(49,229,255,0.06)] text-cyan-300">
             <TypeIcon type={pkg.type} className="h-5 w-5" />
           </span>
           <div>
-            <h3 className="font-bold text-lg text-white group-hover:text-cyan-400 transition-colors">
+            <h3 className="font-semibold text-lg text-[var(--txt)] transition-colors group-hover:text-cyan-400">
               {pkg.name}
             </h3>
             <span className={`text-xs font-mono uppercase tracking-wider ${typeClass[pkg.type] || "text-cyan-400"}`}>
@@ -54,22 +54,22 @@ export function PackageCard({ pkg }: { pkg: Package }) {
         {pkg.tags.slice(0, 4).map((tag) => (
           <span
             key={tag}
-            className="px-2 py-1 text-xs rounded-md bg-[rgba(130,195,255,0.06)] text-dim border border-[rgba(130,195,255,0.1)]"
+            className="rounded-md border border-[var(--line)] bg-[var(--soft)] px-2 py-1 text-xs text-dim"
           >
             {tag}
           </span>
         ))}
       </div>
 
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-4 border-t border-[rgba(130,195,255,0.08)]">
+      <div className="flex flex-col justify-between gap-3 border-t border-[var(--line)] pt-4 sm:flex-row sm:items-center">
         <span className="text-xs text-dim">by {pkg.author}</span>
-        <div className="flex items-center gap-2 min-w-0">
-          <code className="text-xs font-mono text-cyan-400 bg-[rgba(49,229,255,0.06)] px-2 py-1 rounded truncate">
+        <div className="flex min-w-0 items-center gap-2">
+          <code className="command-code min-w-0 truncate rounded px-2 py-1 font-mono text-xs text-cyan-400">
             {installCmd}
           </code>
           <button
             onClick={copy}
-            className="px-3 py-1 text-xs rounded-md bg-[rgba(49,229,255,0.1)] text-cyan-400 hover:bg-[rgba(49,229,255,0.2)] transition-colors font-semibold"
+            className="shrink-0 rounded-md border border-[var(--line)] px-3 py-1 text-xs font-semibold text-cyan-400 transition-colors hover:bg-[var(--soft)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--accent)]"
           >
             {copied ? <span className="inline-flex items-center gap-1"><CheckIcon className="h-3.5 w-3.5" /> Copied</span> : "Copy"}
           </button>

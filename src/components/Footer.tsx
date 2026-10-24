@@ -1,21 +1,18 @@
-"use client";
-
 export function Footer() {
   return (
-    <footer className="border-t border-[rgba(130,195,255,0.11)] mt-24">
-      <div className="max-w-7xl mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <footer className="mt-12 border-t border-[var(--line)]">
+      <div className="mx-auto max-w-7xl px-5 py-10 sm:px-6 sm:py-14">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-[1.4fr_.7fr_.9fr]">
           <div>
-            <div className="font-bold text-lg mb-3">
+            <div className="mb-3 font-semibold text-lg">
               OpenCode <span className="text-gradient">Marketplace</span>
             </div>
             <p className="text-sm text-dim leading-relaxed">
-              Free community skills, tools, agents, and commands for OpenCode.
-              100% free and open source.
+              A community-built directory of skills, tools, agents, and commands for OpenCode.
             </p>
           </div>
           <div>
-            <div className="font-semibold text-sm mb-3 text-cyan-400">Links</div>
+            <div className="mb-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--accent-warm)]">Explore</div>
             <ul className="space-y-2 text-sm text-dim">
               <li><a href="https://github.com/kabirprokk/opencode-registry" className="hover:text-cyan-400 transition-colors">Registry</a></li>
               <li><a href="https://github.com/kabirprokk/opencode-marketplace" className="hover:text-cyan-400 transition-colors">CLI Tool</a></li>
@@ -23,14 +20,15 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <div className="font-semibold text-sm mb-3 text-cyan-400">Made by</div>
+            <div className="mb-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--accent-warm)]">A community project</div>
             <p className="text-sm text-dim leading-relaxed">
-              Built with OpenCode AI by the community. Independent project, not affiliated with Anomaly.
+              Made with OpenCode. Independent and not affiliated with or endorsed by Anomaly.
             </p>
           </div>
         </div>
-        <div className="mt-10 pt-6 border-t border-[rgba(130,195,255,0.08)] text-center text-xs text-dim">
-          © 2026 OpenCode Marketplace. MIT License.
+        <div className="mt-10 flex flex-col gap-2 border-t border-[var(--line)] pt-5 text-xs text-dim sm:flex-row sm:items-center sm:justify-between">
+          <span>© 2026 OpenCode Community Marketplace</span>
+          <span>Open source · MIT License</span>
         </div>
       </div>
     </footer>

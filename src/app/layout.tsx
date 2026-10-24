@@ -5,12 +5,12 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
-  title: "OpenCode Marketplace — Free Skills, Tools & Agents",
+  title: "OpenCode Community Marketplace — Skills, Agents & Tools",
   description:
-    "Browse and install free community skills, tools, agents, and commands for OpenCode. Made by OpenCode's own AI. 100% free and open source.",
+    "Browse community-built skills, agents, and commands for OpenCode. An independent open-source community project.",
   openGraph: {
-    title: "OpenCode Marketplace",
-    description: "Free skills, tools, agents, and commands for OpenCode. Made by OpenCode's own AI.",
+    title: "OpenCode Community Marketplace",
+    description: "Community-built skills, tools, agents, and commands for OpenCode.",
     type: "website",
   },
 };

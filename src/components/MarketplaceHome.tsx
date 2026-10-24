@@ -37,55 +37,67 @@ export function MarketplaceHome({ packages }: { packages: Package[] }) {
     <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-1">
-        {/* Hero */}
+        {/* Editorial introduction */}
         <section className="relative overflow-hidden">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-14 sm:pt-20 pb-12 sm:pb-16 text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-xs font-mono text-cyan-400 mb-6 animate-pulse-glow">
-              <span className="w-2 h-2 rounded-full bg-cyan-400" />
-              Built with OpenCode AI
-            </div>
-            <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold tracking-tight mb-5 sm:mb-6 animate-rise">
-              Free <span className="block sm:inline text-gradient">Skills, Tools</span>
-              <br className="hidden sm:block" /><span className="block sm:inline">&amp; Agents for OpenCode</span>
-            </h1>
-            <p className="text-lg md:text-xl text-dim max-w-2xl mx-auto mb-10 animate-rise">
-              Browse and install community-built skills, agents, and commands.
-              100% free, 100% open source. Built with OpenCode, by the community.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-rise">
-              <a
-                href="https://github.com/kabirprokk/opencode-marketplace"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-violet-500 text-black font-bold text-sm hover:opacity-90 transition-opacity"
-              >
-                Install CLI →
-              </a>
-              <code className="max-w-full break-all px-4 sm:px-5 py-3 rounded-xl glass font-mono text-xs sm:text-sm text-cyan-400">
-                npm i -g github:kabirprokk/opencode-marketplace
-              </code>
-            </div>
-          </div>
-        </section>
-
-        {/* Stats */}
-        <section className="max-w-7xl mx-auto px-6 pb-12">
-          <div className="grid grid-cols-3 gap-4">
-            {[
-              { label: "Packages", value: packages.length },
-              { label: "Free Forever", value: "100%" },
-              { label: "Open Source", value: "MIT" },
-            ].map((s) => (
-              <div key={s.label} className="glass rounded-xl p-3 sm:p-6 text-center">
-                <div className="text-2xl sm:text-3xl font-bold text-gradient">{s.value}</div>
-                <div className="text-[9px] sm:text-xs text-dim mt-1 uppercase tracking-wide sm:tracking-wider">{s.label}</div>
+          <div className="max-w-7xl mx-auto grid items-center gap-10 px-5 py-14 sm:px-6 sm:py-20 lg:grid-cols-[1.12fr_.88fr] lg:gap-16 lg:py-28">
+            <div className="animate-rise">
+              <div className="mb-7 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-dim">
+                <span className="h-px w-8 bg-[var(--accent-warm)]" />
+                A community-built OpenCode directory
               </div>
-            ))}
+              <h1 className="display-serif max-w-3xl text-[clamp(3.25rem,7.5vw,6.5rem)] leading-[0.94] tracking-[-0.045em]">
+                Find your next <span className="text-gradient italic">way to build.</span>
+              </h1>
+              <p className="mt-7 max-w-xl text-base leading-7 text-dim sm:text-lg sm:leading-8">
+                Skills, agents, and commands made by the community—collected in one simple place for your OpenCode workflow.
+              </p>
+              <p className="mt-3 text-xs leading-5 text-dim">Independent community project. Not affiliated with Anomaly.</p>
+              <div className="mt-8 flex flex-wrap items-center gap-3">
+                <a href="#packages" className="inline-flex items-center gap-3 rounded-full bg-[var(--txt)] px-5 py-3 text-sm font-semibold text-[var(--bg)] transition-transform hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]">
+                  Explore the catalog <span aria-hidden="true">↘</span>
+                </a>
+                <a href="https://github.com/kabirprokk/opencode-marketplace" target="_blank" rel="noopener noreferrer" className="rounded-full border border-[var(--line-strong)] px-5 py-3 text-sm font-semibold text-[var(--txt)] transition-colors hover:border-[var(--accent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]">
+                  Get the CLI
+                </a>
+              </div>
+            </div>
+
+            <aside className="hero-panel relative overflow-hidden rounded-[1.75rem] border border-[var(--line)] p-6 sm:p-9 lg:min-h-[390px]">
+              <div aria-hidden="true" className="pointer-events-none absolute -right-16 -top-24 h-72 w-72 rounded-full border border-[var(--line)] sm:h-96 sm:w-96" />
+              <div aria-hidden="true" className="pointer-events-none absolute -right-5 -top-12 h-52 w-52 rounded-full border border-[var(--line-strong)] sm:h-72 sm:w-72" />
+              <div className="relative flex h-full flex-col justify-between gap-16">
+                <div className="flex items-start justify-between gap-3">
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-dim">The community toolbox</span>
+                  <span className="rounded-full border border-[var(--line-strong)] px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.16em] text-[var(--accent)]">Open source</span>
+                </div>
+                <div>
+                  <div className="display-serif text-7xl leading-none tracking-[-0.05em] sm:text-8xl">{String(packages.length).padStart(2, "0")}</div>
+                  <p className="mt-3 text-sm text-dim">community packages and growing</p>
+                  <div className="mt-7 flex flex-wrap gap-2">
+                    {["Skills", "Agents", "Commands"].map((label) => <span key={label} className="rounded-full border border-[var(--line)] bg-[var(--soft)] px-3 py-1.5 text-xs text-[var(--txt)]">{label}</span>)}
+                  </div>
+                </div>
+                <div className="flex items-end justify-between gap-4 border-t border-[var(--line)] pt-4">
+                  <div>
+                    <div className="text-[9px] uppercase tracking-[0.2em] text-dim">A note on provenance</div>
+                    <div className="mt-1 text-xs text-dim">Community maintained · Not official Anomaly software</div>
+                  </div>
+                  <span aria-hidden="true" className="display-serif text-3xl italic text-[var(--accent-warm)]">OC</span>
+                </div>
+              </div>
+            </aside>
           </div>
         </section>
 
         {/* Search + Filter */}
-        <section id="packages" className="max-w-7xl mx-auto px-6 pb-20">
+        <section id="packages" className="max-w-7xl mx-auto px-5 pb-20 sm:px-6 sm:pb-28">
+          <div className="mb-8 flex flex-col justify-between gap-4 border-t border-[var(--line)] pt-8 sm:flex-row sm:items-end sm:pt-10">
+            <div>
+              <div className="mb-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--accent-warm)]">Browse the collection</div>
+              <h2 className="display-serif text-4xl tracking-tight sm:text-5xl">The directory</h2>
+            </div>
+            <p className="max-w-sm text-sm leading-6 text-dim">Explore community submissions. Review each project before installing.</p>
+          </div>
           <div className="flex flex-col md:flex-row gap-4 mb-8">
             <div className="flex-1 relative">
               <input
@@ -93,7 +105,7 @@ export function MarketplaceHome({ packages }: { packages: Package[] }) {
                 placeholder="Search packages, tags, authors..."
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                className="w-full px-5 py-3 rounded-xl glass text-white placeholder-dim focus:outline-none focus:border-cyan-400 transition-colors"
+                className="w-full rounded-xl glass px-5 py-3 text-[var(--txt)] placeholder-dim transition-colors focus:border-[var(--accent)] focus:outline-none focus:ring-2 focus:ring-[color-mix(in_srgb,var(--accent)_20%,transparent)]"
               />
               <SearchIcon className="absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-dim" />
             </div>
@@ -127,9 +139,10 @@ export function MarketplaceHome({ packages }: { packages: Package[] }) {
 
         {/* About */}
         <section id="about" className="max-w-7xl mx-auto px-6 pb-20">
-          <div className="glass rounded-2xl p-10">
-            <h2 className="text-3xl font-bold mb-4">
-              Built with <span className="text-gradient">OpenCode AI</span>
+          <div className="glass rounded-[1.75rem] p-6 sm:p-10 lg:p-12">
+            <div className="mb-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--accent-warm)]">Independent by design</div>
+            <h2 className="display-serif mb-4 text-4xl sm:text-5xl">
+              Built with <span className="text-gradient italic">OpenCode.</span>
             </h2>
             <p className="text-dim leading-relaxed max-w-3xl mb-6">
               This independent community project was built with OpenCode, the open-source AI coding agent. It is not an official Anomaly project. The registry, CLI, and website are open source, and anyone can contribute packages.
@@ -140,8 +153,8 @@ export function MarketplaceHome({ packages }: { packages: Package[] }) {
                 { title: "Open Source", desc: "Registry, CLI, and website are all MIT licensed. Fork and customize." },
                 { title: "Community Driven", desc: "Anyone can publish. Submit a PR to add your skill or agent." },
               ].map((f) => (
-                <div key={f.title} className="p-4 rounded-xl bg-[rgba(130,195,255,0.04)]">
-                  <div className="font-semibold text-cyan-400 mb-1">{f.title}</div>
+                  <div key={f.title} className="surface-soft rounded-xl border border-[var(--line)] p-4">
+                    <div className="font-semibold text-cyan-400 mb-1">{f.title}</div>
                   <div className="text-sm text-dim">{f.desc}</div>
                 </div>
               ))}
