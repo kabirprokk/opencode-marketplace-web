@@ -47,7 +47,7 @@ export function MarketplaceHome({ packages }: { packages: Package[] }) {
               <h1 className="display-serif text-[clamp(2.5rem,6vw,4.5rem)] leading-[1.02] tracking-tight text-[var(--txt)]">
                 Find your next
                 <br />
-                <span className="text-[var(--accent)]">way to build.</span>
+                <span className="text-[var(--accent-text)]">way to build.</span>
               </h1>
               <p className="mt-6 max-w-lg text-base leading-7 text-[var(--muted)]">
                 Skills, agents, and commands made by the community—collected in
@@ -90,7 +90,7 @@ export function MarketplaceHome({ packages }: { packages: Package[] }) {
                 <span className="text-xs font-medium uppercase tracking-wider text-[var(--muted)]">
                   Community toolbox
                 </span>
-                <span className="rounded-full bg-[var(--surface-overlay)] px-2.5 py-1 text-xs font-medium text-[var(--accent)]">
+                <span className="rounded-full bg-[var(--surface-overlay)] px-2.5 py-1 text-xs font-medium text-[var(--accent-text)]">
                   Open source
                 </span>
               </div>
@@ -186,7 +186,7 @@ export function MarketplaceHome({ packages }: { packages: Package[] }) {
                     setTypeFilter("all");
                   }}
                   type="button"
-                  className="mt-3 min-h-11 text-sm font-medium text-[var(--accent)] hover:underline"
+                  className="mt-3 min-h-11 text-sm font-medium text-[var(--accent-text)] hover:underline"
                 >
                   Clear filters
                 </button>
@@ -280,7 +280,7 @@ export function MarketplaceHome({ packages }: { packages: Package[] }) {
                 <h3 className="mt-3 text-sm font-semibold text-[var(--txt)]">
                   {s.title}
                 </h3>
-                <code className="code-bg mt-2 block break-all rounded-md px-2.5 py-1.5 font-mono text-xs text-[var(--accent)]">
+                <code className="code-bg mt-2 block break-all rounded-md px-2.5 py-1.5 font-mono text-xs text-[var(--accent-text)]">
                   {s.cmd}
                 </code>
               </div>

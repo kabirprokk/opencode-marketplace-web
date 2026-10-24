@@ -25,32 +25,42 @@
 :root,
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --bg: oklch(0.145 0.004 286.286);
-  --surface: oklch(0.205 0.004 286.286);
-  --surface-overlay: oklch(1 0 0 / 4%);
-  --line: oklch(1 0 0 / 8%);
-  --line-strong: oklch(1 0 0 / 14%);
-  --txt: oklch(0.985 0.001 286.375);
-  --muted: oklch(0.72 0.006 286.033);
-  --accent: oklch(0.76 0.16 163.223);
-  --accent-foreground: oklch(0.18 0.04 164.15);
-  --code-bg: oklch(0.76 0.16 163.223 / 9%);
-  --shadow-md: 0 4px 16px oklch(0 0 0 / 24%);
+  --bg: hsl(0 9% 7%);
+  --surface: hsl(0 6% 10%);
+  --surface-overlay: hsl(0 6% 15%);
+  --line: hsl(0 4% 23%);
+  --line-strong: hsl(0 3% 28%);
+  --txt: hsl(0 15% 94%);
+  --muted: hsl(0 4% 71%);
+  --accent: hsl(62 100% 90%);
+  --accent-text: hsl(62 100% 78%);
+  --accent-foreground: hsl(0 9% 7%);
+  --mark-bg: var(--txt);
+  --mark-fg: var(--bg);
+  --code-bg: hsl(62 100% 70% / 12%);
+  --highlight: hsl(62 100% 90%);
+  --highlight-text: hsl(0 9% 7%);
+  --shadow-md: 0 4px 16px hsl(0 100% 3% / 24%);
 }
 
 :root[data-theme="light"] {
   color-scheme: light;
-  --bg: oklch(0.985 0.002 247.839);
-  --surface: oklch(1 0 0);
-  --surface-overlay: oklch(0 0 0 / 2.5%);
-  --line: oklch(0.2 0.006 286.033 / 8%);
-  --line-strong: oklch(0.2 0.006 286.033 / 14%);
-  --txt: oklch(0.21 0.006 285.885);
-  --muted: oklch(0.46 0.01 286.033);
-  --accent: oklch(0.48 0.13 164.15);
-  --accent-foreground: oklch(0.99 0 0);
-  --code-bg: oklch(0.48 0.13 164.15 / 7%);
-  --shadow-md: 0 4px 16px oklch(0.2 0.006 286.033 / 7%);
+  --bg: hsl(0 20% 99%);
+  --surface: hsl(0 8% 97%);
+  --surface-overlay: hsl(0 8% 94%);
+  --line: hsl(30 2% 81%);
+  --line-strong: hsl(0 1% 60%);
+  --txt: hsl(0 5% 12%);
+  --muted: hsl(0 1% 39%);
+  --accent: hsl(62 84% 88%);
+  --accent-text: hsl(55 100% 20%);
+  --accent-foreground: hsl(0 5% 12%);
+  --mark-bg: var(--txt);
+  --mark-fg: var(--bg);
+  --code-bg: hsl(62 84% 55% / 13%);
+  --highlight: hsl(62 84% 88%);
+  --highlight-text: hsl(0 5% 12%);
+  --shadow-md: 0 4px 16px hsl(0 5% 12% / 7%);
 }
 
 html,
@@ -65,13 +75,13 @@ html { scroll-behavior: smooth; }
 body {
   font-family: var(--font-inter), system-ui, sans-serif;
   background:
-    radial-gradient(44rem 30rem at 82% -8%, color-mix(in oklch, var(--accent) 5%, transparent), transparent 72%),
+    radial-gradient(44rem 30rem at 82% -8%, color-mix(in srgb, var(--accent) 5%, transparent), transparent 72%),
     var(--bg);
   background-attachment: scroll;
   transition: background-color 180ms ease, color 180ms ease;
 }
 
-::selection { background: color-mix(in oklch, var(--accent) 24%, transparent); }
+::selection { background: var(--highlight); color: var(--highlight-text); }
 
 .surface-overlay { background: var(--surface-overlay); }
 .code-bg { background: var(--code-bg); }

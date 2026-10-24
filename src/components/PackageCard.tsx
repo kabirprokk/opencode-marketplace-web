@@ -22,11 +22,11 @@ export function PackageCard({ pkg }: { pkg: Package }) {
     <article className="group flex flex-col rounded-xl border border-[var(--line)] bg-[var(--surface)] p-5 transition-all duration-200 hover:border-[var(--line-strong)] hover:shadow-[var(--shadow-md)]">
       <div className="flex items-start justify-between gap-3">
         <div className="flex min-w-0 items-center gap-3">
-          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[var(--surface-overlay)] text-[var(--accent)]">
+          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[var(--surface-overlay)] text-[var(--accent-text)]">
             <TypeIcon type={pkg.type} className="h-4 w-4" />
           </span>
           <div className="min-w-0">
-            <h3 className="truncate text-sm font-semibold text-[var(--txt)] transition-colors group-hover:text-[var(--accent)]">
+            <h3 className="truncate text-sm font-semibold text-[var(--txt)] transition-colors group-hover:text-[var(--accent-text)]">
               {pkg.name}
             </h3>
             <span className="text-xs text-[var(--muted)]">{pkg.type}</span>
@@ -60,7 +60,7 @@ export function PackageCard({ pkg }: { pkg: Package }) {
       <div className="mt-4 flex items-center justify-between gap-3 border-t border-[var(--line)] pt-3">
         <span className="text-xs text-[var(--muted)]">by {pkg.author}</span>
         <div className="flex min-w-0 items-center gap-2">
-          <code className="code-bg min-w-0 truncate rounded-md px-2 py-1 font-mono text-xs text-[var(--accent)]">
+          <code className="code-bg min-w-0 truncate rounded-md px-2 py-1 font-mono text-xs text-[var(--accent-text)]">
             {installCmd}
           </code>
           <button
