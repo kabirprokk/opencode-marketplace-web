@@ -68,8 +68,8 @@ export function MarketplaceHome({ packages }: { packages: Package[] }) {
   // Pagination resets are handled in the change handlers below to avoid
   // calling setState synchronously inside an effect.
 
-  const visible = filtered.slice(0, visibleCount);
-  const hasMore = visibleCount < filtered.length;
+  const visible = typeFilter === "all" ? filtered.slice(0, visibleCount) : filtered;
+  const hasMore = typeFilter === "all" && visibleCount < filtered.length;
 
   const clearFilters = useCallback(() => {
     setQuery("");
