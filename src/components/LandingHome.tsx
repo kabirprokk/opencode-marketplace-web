@@ -1,10 +1,13 @@
 import Link from "next/link";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { PackageCard } from "@/components/PackageCard";
 import { Package } from "@/lib/registry";
 
 export function LandingHome({ packages }: { packages: Package[] }) {
-  const featured = packages.find((pkg) => pkg.name === "brainstorming") ?? packages[0];
+  const skills = packages
+    .filter((pkg) => pkg.type === "skill")
+    .sort((a, b) => a.name.localeCompare(b.name));
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -39,39 +42,62 @@ export function LandingHome({ packages }: { packages: Package[] }) {
               </div>
             </div>
 
-            <aside className="relative rounded-lg border border-[var(--line)] bg-[var(--surface)] p-6 sm:p-8" aria-label="Featured community package">
-              <div className="flex items-center justify-between border-b border-[var(--line)] pb-5">
-                <span className="text-xs font-medium text-[var(--muted)]">A look inside the catalog</span>
-                <span className="rounded-full bg-[var(--surface-overlay)] px-2.5 py-1 text-[11px] font-medium uppercase tracking-wide text-[var(--muted)]">
-                  {featured?.type.replace("-", " ") ?? "Community skill"}
-                </span>
+            <aside className="rounded-lg border border-[var(--line)] bg-[var(--surface)] p-6 sm:p-8" aria-label="Community marketplace overview">
+              <p className="text-xs font-medium uppercase tracking-[0.12em] text-[var(--muted)]">
+                The community library
+              </p>
+              <div className="mt-6 grid grid-cols-2 gap-4">
+                <div>
+                  <p className="text-5xl font-semibold tracking-tight text-[var(--txt)]">{skills.length}</p>
+                  <p className="mt-1 text-sm text-[var(--muted)]">community skills</p>
+                </div>
+                <div className="border-l border-[var(--line)] pl-5">
+                  <p className="text-5xl font-semibold tracking-tight text-[var(--txt)]">{packages.length}</p>
+                  <p className="mt-1 text-sm text-[var(--muted)]">total packages</p>
+                </div>
               </div>
-              {featured ? (
-                <>
-                  <h2 className="mt-6 text-2xl font-semibold tracking-tight text-[var(--txt)] sm:text-3xl">
-                    {featured.name}
-                  </h2>
-                  <p className="mt-3 min-h-20 text-sm leading-6 text-[var(--muted)]">
-                    {featured.description}
-                  </p>
-                  <div className="mt-7 rounded-md border border-[var(--line)] bg-[var(--bg)] p-4">
-                    <p className="mb-2 text-[11px] font-medium uppercase tracking-[0.12em] text-[var(--muted)]">
-                      Install command
-                    </p>
-                    <code className="break-all font-mono text-sm text-[var(--txt)]">
-                      ocm install {featured.name}
-                    </code>
-                  </div>
-                  <p className="mt-5 text-xs text-[var(--muted)]">
-                    By {featured.author} <span aria-hidden="true">·</span> {featured.license}
-                  </p>
-                </>
-              ) : (
-                <p className="mt-6 text-sm leading-6 text-[var(--muted)]">
-                  Browse the catalog to discover community-built OpenCode tools.
-                </p>
-              )}
+              <div className="mt-8 border-t border-[var(--line)] pt-5">
+                <p className="text-xs font-medium text-[var(--muted)]">Install any package with</p>
+                <code className="mt-3 block rounded-md bg-[var(--bg)] px-4 py-3 font-mono text-sm text-[var(--txt)]">
+                  ocm install &lt;package&gt;
+                </code>
+              </div>
             </aside>
+          </div>
+        </section>
+
+        <section id="skills" className="mx-auto max-w-7xl px-5 pb-16 sm:px-6 sm:pb-20">
+          <div className="flex flex-wrap items-end justify-between gap-4 border-b border-[var(--line)] pb-5">
+            <div>
+              <p className="mb-2 text-xs font-medium uppercase tracking-[0.12em] text-[var(--muted)]">
+                Explore the collection
+              </p>
+              <h2 className="text-2xl font-semibold tracking-tight text-[var(--txt)] sm:text-3xl">
+                Community skills
+              </h2>
+            </div>
+            <p className="text-sm text-[var(--muted)]">{skills.length} skills · A–Z</p>
+          </div>
+
+          {skills.length > 0 ? (
+            <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
+              {skills.map((pkg) => (
+                <PackageCard key={pkg.name} pkg={pkg} showType={false} />
+              ))}
+            </div>
+          ) : (
+            <p className="mt-6 rounded-lg border border-[var(--line)] bg-[var(--surface)] p-6 text-sm text-[var(--muted)]">
+              No skills are listed yet. Visit the marketplace to browse all community packages.
+            </p>
+          )}
+
+          <div className="mt-8 flex justify-center">
+            <Link
+              href="/marketplace"
+              className="inline-flex min-h-11 items-center rounded-md border border-[var(--line-strong)] px-4 text-sm font-medium text-[var(--txt)] transition-colors hover:bg-[var(--surface-overlay)]"
+            >
+              Browse all package types
+            </Link>
           </div>
         </section>
       </main>
