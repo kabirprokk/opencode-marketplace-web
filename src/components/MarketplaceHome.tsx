@@ -17,21 +17,15 @@ const TYPES: { value: PackageType | "all"; label: string }[] = [
 
 const PAGE_SIZE = 24;
 
-export function MarketplaceHome({
-  packages,
-  initialQuery = "",
-  initialType = "all",
-}: {
-  packages: Package[];
-  initialQuery?: string;
-  initialType?: PackageType | "all";
-}) {
+export function MarketplaceHome({ packages }: { packages: Package[] }) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const [query, setQuery] = useState(initialQuery);
-  const [typeFilter, setTypeFilter] = useState<PackageType | "all">(initialType);
+  const [query, setQuery] = useState(searchParams.get("q") ?? "");
+  const [typeFilter, setTypeFilter] = useState<PackageType | "all">(
+    (searchParams.get("type") as PackageType | "all" | null) ?? "all",
+  );
   const [sortBy, setSortBy] = useState<"name" | "author">("name");
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
