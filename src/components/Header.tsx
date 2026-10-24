@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 function ThemeToggle() {
   useEffect(() => {
@@ -65,11 +66,17 @@ export function Header() {
           href="/"
           className="flex min-w-0 items-center gap-2.5 transition-opacity hover:opacity-80"
         >
-          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[var(--mark-bg)] text-xs font-bold text-[var(--mark-fg)]">
-            OC
-          </span>
+          <Image
+            src="/ocm-skill-mark.svg"
+            alt=""
+            aria-hidden="true"
+            width={32}
+            height={32}
+            priority
+            className="h-8 w-8 shrink-0 rounded-lg"
+          />
           <span className="truncate text-sm font-semibold tracking-tight text-[var(--txt)]">
-            OpenCode Marketplace
+            OCM Skill
           </span>
         </Link>
 

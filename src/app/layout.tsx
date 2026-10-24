@@ -5,12 +5,18 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
-  title: "OpenCode Community Marketplace — Skills, Agents & Tools",
+  metadataBase: new URL("https://ocmskills.vercel.app"),
+  title: "OCM Skill — OpenCode Skills & Tools",
   description:
-    "Discover community-built skills, agents, and commands for OpenCode. An independent open-source community project.",
+    "Discover community-built skills, agents, commands, and tools for OpenCode. An independent community project.",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "OpenCode Community Marketplace",
+    title: "OCM Skill — OpenCode Skills & Tools",
     description: "Community-built skills, tools, agents, and commands for OpenCode.",
+    url: "/",
+    siteName: "OCM Skill",
     type: "website",
   },
 };

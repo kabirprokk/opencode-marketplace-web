@@ -1,8 +1,8 @@
-# OpenCode Community Marketplace
+# OCM Skill
 
 Browse free, community-maintained skills, agents, and commands for OpenCode.
 
-**Live site:** https://opencode-marketplace-web.vercel.app
+**Live site:** https://ocmskills.vercel.app
 
 **Registry:** https://github.com/kabirprokk/opencode-registry
 
