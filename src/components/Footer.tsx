@@ -1,32 +1,59 @@
 export function Footer() {
   return (
-    <footer className="mt-12 border-t border-[var(--line)]">
-      <div className="mx-auto max-w-7xl px-5 py-10 sm:px-6 sm:py-14">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-[1.4fr_.7fr_.9fr]">
+    <footer className="mt-8 border-t border-[var(--line)]">
+      <div className="mx-auto max-w-6xl px-5 py-10 sm:px-6">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-[2fr_1fr_1fr]">
           <div>
-            <div className="mb-3 font-semibold text-lg">
-              OpenCode <span className="text-gradient">Marketplace</span>
-            </div>
-            <p className="text-sm text-dim leading-relaxed">
-              A community-built directory of skills, tools, agents, and commands for OpenCode.
+            <p className="text-sm font-semibold text-[var(--txt)]">
+              OpenCode Marketplace
+            </p>
+            <p className="mt-2 max-w-sm text-sm leading-6 text-[var(--muted)]">
+              A community-built directory of skills, tools, agents, and commands
+              for OpenCode. Free and open source.
             </p>
           </div>
           <div>
-            <div className="mb-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--accent-warm)]">Explore</div>
-            <ul className="space-y-2 text-sm text-dim">
-              <li><a href="https://github.com/kabirprokk/opencode-registry" className="hover:text-cyan-400 transition-colors">Registry</a></li>
-              <li><a href="https://github.com/kabirprokk/opencode-marketplace" className="hover:text-cyan-400 transition-colors">CLI Tool</a></li>
-              <li><a href="https://github.com/anomalyco/opencode" className="hover:text-cyan-400 transition-colors">OpenCode</a></li>
+            <p className="mb-3 text-xs font-medium uppercase tracking-wider text-[var(--muted)]">
+              Explore
+            </p>
+            <ul className="space-y-2 text-sm text-[var(--muted)]">
+              <li>
+                <a
+                  href="https://github.com/kabirprokk/opencode-registry"
+                  className="transition-colors hover:text-[var(--txt)]"
+                >
+                  Registry
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://github.com/kabirprokk/opencode-marketplace"
+                  className="transition-colors hover:text-[var(--txt)]"
+                >
+                  CLI Tool
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://github.com/anomalyco/opencode"
+                  className="transition-colors hover:text-[var(--txt)]"
+                >
+                  OpenCode
+                </a>
+              </li>
             </ul>
           </div>
           <div>
-            <div className="mb-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--accent-warm)]">A community project</div>
-            <p className="text-sm text-dim leading-relaxed">
-              Made with OpenCode. Independent and not affiliated with or endorsed by Anomaly.
+            <p className="mb-3 text-xs font-medium uppercase tracking-wider text-[var(--muted)]">
+              Community
+            </p>
+            <p className="text-sm leading-6 text-[var(--muted)]">
+              Made with OpenCode. Independent and not affiliated with or endorsed
+              by Anomaly.
             </p>
           </div>
         </div>
-        <div className="mt-10 flex flex-col gap-2 border-t border-[var(--line)] pt-5 text-xs text-dim sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-8 flex flex-col gap-2 border-t border-[var(--line)] pt-6 text-xs text-[var(--muted)] sm:flex-row sm:items-center sm:justify-between">
           <span>© 2026 OpenCode Community Marketplace</span>
           <span>Open source · MIT License</span>
         </div>
