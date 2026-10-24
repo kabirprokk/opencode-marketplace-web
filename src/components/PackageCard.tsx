@@ -46,6 +46,18 @@ export function PackageCard({ pkg, showType = true }: { pkg: Package; showType?:
         {pkg.description}
       </p>
       <p className="mt-3 text-xs text-[var(--muted)]">by {pkg.author} <span aria-hidden="true">·</span> {pkg.license}</p>
+      {pkg.tags.length > 0 && (
+        <div className="mt-2 flex flex-wrap gap-1.5">
+          {pkg.tags.slice(0, 4).map((tag) => (
+            <span key={tag} className="rounded-full border border-[var(--line)] px-2 py-0.5 text-[10px] text-[var(--muted)]">
+              {tag}
+            </span>
+          ))}
+          {pkg.tags.length > 4 && (
+            <span className="text-[10px] text-[var(--muted)]">+{pkg.tags.length - 4}</span>
+          )}
+        </div>
+      )}
       <button
         onClick={copy}
         type="button"
