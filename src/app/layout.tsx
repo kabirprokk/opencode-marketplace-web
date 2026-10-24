@@ -12,6 +12,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  verification: {
+    google: "TcpX8wM2gOfL2XigaiM58ssNxeyO5uGO3Eo0SL3fYFU",
+  },
   openGraph: {
     title: "OCM — OpenCode Marketplace",
     description: "An independent directory of community-built skills and tools for OpenCode.",
