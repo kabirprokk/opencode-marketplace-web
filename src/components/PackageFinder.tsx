@@ -115,7 +115,7 @@ export function PackageFinder({ packages }: { packages: Package[] }) {
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_78%_20%,color-mix(in_srgb,var(--accent)_10%,transparent),transparent_38%)]" />
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 py-14 sm:px-6 sm:py-20 lg:grid-cols-[1.08fr_0.92fr] lg:gap-12 lg:py-24">
           <div className="max-w-2xl">
-            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--accent-text)]">An independent community index</p>
+            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--accent-text)]">OpenCode Marketplace of Skills</p>
             <h1 className="mt-5 max-w-xl font-serif text-5xl font-medium leading-[1.02] tracking-[-0.045em] text-[var(--txt)] sm:text-6xl lg:text-7xl">
               More ways to make OpenCode yours.
             </h1>
@@ -163,11 +163,6 @@ export function PackageFinder({ packages }: { packages: Package[] }) {
                   <text x="220" y="119" fontSize="10" fill="var(--muted)">COMMUNITY</text>
                   <text x="220" y="137" fontSize="16" fontWeight="700">OCM</text>
                 </g>
-                <circle cx="220" cy="122" r="5" fill="var(--accent)" />
-                <circle cx="104" cy="65" r="3" fill="var(--accent)" />
-                <circle cx="334" cy="58" r="3" fill="var(--accent)" />
-                <circle cx="94" cy="184" r="3" fill="var(--accent)" />
-                <circle cx="344" cy="190" r="3" fill="var(--accent)" />
               </svg>
               <div className="flex items-center justify-between border-t border-[var(--line)] pt-4 text-xs text-[var(--muted)]">
                 <span>{packages.length.toLocaleString()} listed packages</span>

@@ -77,7 +77,7 @@ export function Header() {
           />
           <span className="flex min-w-0 flex-col leading-tight">
             <span className="truncate text-sm font-bold tracking-[0.08em] text-[var(--txt)]">OCM</span>
-            <span className="hidden truncate pt-0.5 text-[10px] text-[var(--muted)] sm:block">OpenCode community index</span>
+            <span className="hidden truncate pt-0.5 text-[10px] text-[var(--muted)] sm:block">OpenCode Marketplace of Skills</span>
           </span>
         </Link>
 

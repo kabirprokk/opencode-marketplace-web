@@ -6,17 +6,17 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ocms.pages.dev"),
-  title: "OCM — OpenCode Community Index",
+  title: "OCM — OpenCode Marketplace of Skills",
   description:
     "Discover community-built skills, agents, commands, and tools for OpenCode. An independent community project.",
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "OCM — OpenCode Community Index",
-    description: "An independent directory of community-built packages for OpenCode.",
+    title: "OCM — OpenCode Marketplace of Skills",
+    description: "An independent directory of community-built skills and tools for OpenCode.",
     url: "/",
-    siteName: "OCM Skill",
+    siteName: "OpenCode Marketplace of Skills",
     type: "website",
   },
 };
