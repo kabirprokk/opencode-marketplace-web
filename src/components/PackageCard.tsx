@@ -11,7 +11,18 @@ export function PackageCard({ pkg, showType = true }: { pkg: Package; showType?:
 
   const copy = async () => {
     try {
-      await navigator.clipboard.writeText(installCmd);
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(installCmd);
+      } else {
+        const textarea = document.createElement("textarea");
+        textarea.value = installCmd;
+        textarea.style.position = "fixed";
+        textarea.style.opacity = "0";
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+      }
       setCopied(true);
       window.setTimeout(() => setCopied(false), 1800);
     } catch {

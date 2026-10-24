@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useCallback } from "react";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { PackageCard } from "@/components/PackageCard";
@@ -14,13 +15,41 @@ const TYPES: { value: PackageType | "all"; label: string }[] = [
   { value: "skill-pack", label: "Skill packs" },
 ];
 
-export function MarketplaceHome({ packages }: { packages: Package[] }) {
-  const [query, setQuery] = useState("");
-  const [typeFilter, setTypeFilter] = useState<PackageType | "all">("all");
+const PAGE_SIZE = 24;
+
+export function MarketplaceHome({
+  packages,
+  initialQuery = "",
+  initialType = "all",
+}: {
+  packages: Package[];
+  initialQuery?: string;
+  initialType?: PackageType | "all";
+}) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const [query, setQuery] = useState(initialQuery);
+  const [typeFilter, setTypeFilter] = useState<PackageType | "all">(initialType);
+  const [sortBy, setSortBy] = useState<"name" | "author">("name");
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+
+  // Sync state -> URL (shareable filters)
+  useEffect(() => {
+    const params = new URLSearchParams(searchParams.toString());
+    if (query) params.set("q", query); else params.delete("q");
+    if (typeFilter !== "all") params.set("type", typeFilter); else params.delete("type");
+    const next = params.toString();
+    const current = searchParams.toString();
+    if (next !== current) {
+      router.replace(`${pathname}${next ? `?${next}` : ""}`, { scroll: false });
+    }
+  }, [query, typeFilter, pathname, router, searchParams]);
 
   const filtered = useMemo(() => {
     const q = query.toLowerCase();
-    return packages.filter((p) => {
+    const result = packages.filter((p) => {
       if (typeFilter !== "all" && p.type !== typeFilter) return false;
       if (!q) return true;
       return (
@@ -29,8 +58,28 @@ export function MarketplaceHome({ packages }: { packages: Package[] }) {
         p.tags.some((t) => t.toLowerCase().includes(q)) ||
         p.author.toLowerCase().includes(q)
       );
-    }).sort((a, b) => a.name.localeCompare(b.name));
-  }, [packages, query, typeFilter]);
+    });
+    result.sort((a, b) => {
+      if (sortBy === "author") {
+        const byAuthor = a.author.localeCompare(b.author);
+        if (byAuthor !== 0) return byAuthor;
+      }
+      return a.name.localeCompare(b.name);
+    });
+    return result;
+  }, [packages, query, typeFilter, sortBy]);
+
+  // Pagination resets are handled in the change handlers below to avoid
+  // calling setState synchronously inside an effect.
+
+  const visible = filtered.slice(0, visibleCount);
+  const hasMore = visibleCount < filtered.length;
+
+  const clearFilters = useCallback(() => {
+    setQuery("");
+    setTypeFilter("all");
+    setSortBy("name");
+  }, []);
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -49,14 +98,14 @@ export function MarketplaceHome({ packages }: { packages: Package[] }) {
               </div>
             </div>
 
-            <div className="mt-6 grid gap-3 sm:grid-cols-[minmax(0,1fr)_200px]">
+            <div className="mt-6 grid gap-3 sm:grid-cols-[minmax(0,1fr)_160px_160px]">
               <div className="relative block">
                 <input
                   type="search"
                   aria-label="Search packages by name, description, tag, or author"
                   placeholder="Search packages"
                   value={query}
-                  onChange={(e) => setQuery(e.target.value)}
+                  onChange={(e) => { setQuery(e.target.value); setVisibleCount(PAGE_SIZE); }}
                   className="min-h-11 w-full rounded-md border border-[var(--line)] bg-[var(--surface)] py-2.5 pl-4 pr-10 text-sm text-[var(--txt)] placeholder-[var(--muted)] transition-colors focus:border-[var(--accent)] focus:outline-none focus:ring-1 focus:ring-[var(--accent)]"
                 />
               </div>
@@ -64,12 +113,23 @@ export function MarketplaceHome({ packages }: { packages: Package[] }) {
                 <select
                   aria-label="Filter by package type"
                   value={typeFilter}
-                  onChange={(e) => setTypeFilter(e.target.value as PackageType | "all")}
+                  onChange={(e) => { setTypeFilter(e.target.value as PackageType | "all"); setVisibleCount(PAGE_SIZE); }}
                   className="min-h-11 w-full rounded-md border border-[var(--line)] bg-[var(--surface)] px-3 text-sm text-[var(--txt)] focus:border-[var(--accent)] focus:outline-none focus:ring-1 focus:ring-[var(--accent)]"
                 >
                   {TYPES.map((type) => (
                     <option key={type.value} value={type.value}>{type.label}</option>
                   ))}
+                </select>
+              </div>
+              <div>
+                <select
+                  aria-label="Sort packages"
+                  value={sortBy}
+                  onChange={(e) => { setSortBy(e.target.value as "name" | "author"); setVisibleCount(PAGE_SIZE); }}
+                  className="min-h-11 w-full rounded-md border border-[var(--line)] bg-[var(--surface)] px-3 text-sm text-[var(--txt)] focus:border-[var(--accent)] focus:outline-none focus:ring-1 focus:ring-[var(--accent)]"
+                >
+                  <option value="name">Sort: Name</option>
+                  <option value="author">Sort: Author</option>
                 </select>
               </div>
             </div>
@@ -79,7 +139,17 @@ export function MarketplaceHome({ packages }: { packages: Package[] }) {
                 {filtered.length === packages.length
                   ? `${packages.length} packages`
                   : `${filtered.length} of ${packages.length} packages`}
+                {hasMore ? ` · showing ${visible.length}` : ""}
               </p>
+              {(query || typeFilter !== "all" || sortBy !== "name") && (
+                <button
+                  type="button"
+                  onClick={clearFilters}
+                  className="min-h-8 rounded-md px-2 text-xs font-medium text-[var(--accent-text)] hover:bg-[var(--surface-overlay)]"
+                >
+                  Clear filters
+                </button>
+              )}
             </div>
           </div>
 
@@ -89,7 +159,7 @@ export function MarketplaceHome({ packages }: { packages: Package[] }) {
                 <p className="text-sm font-medium text-[var(--txt)]">No packages found</p>
                 <p className="mt-1 text-sm text-[var(--muted)]">Try another search or package type.</p>
                 <button
-                  onClick={() => { setQuery(""); setTypeFilter("all"); }}
+                  onClick={clearFilters}
                   type="button"
                   className="mt-4 min-h-10 rounded-md px-3 text-sm font-medium text-[var(--accent-text)] hover:bg-[var(--surface-overlay)]"
                 >
@@ -97,11 +167,24 @@ export function MarketplaceHome({ packages }: { packages: Package[] }) {
                 </button>
               </div>
             ) : (
-              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
-                {filtered.map((pkg) => (
-                  <PackageCard key={pkg.name} pkg={pkg} />
-                ))}
-              </div>
+              <>
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
+                  {visible.map((pkg) => (
+                    <PackageCard key={pkg.name} pkg={pkg} />
+                  ))}
+                </div>
+                {hasMore && (
+                  <div className="mt-8 flex justify-center">
+                    <button
+                      type="button"
+                      onClick={() => setVisibleCount((c) => c + PAGE_SIZE)}
+                      className="min-h-11 rounded-md border border-[var(--line-strong)] px-5 text-sm font-medium text-[var(--txt)] transition-colors hover:bg-[var(--surface-overlay)]"
+                    >
+                      Load more ({filtered.length - visible.length} remaining)
+                    </button>
+                  </div>
+                )}
+              </>
             )}
           </div>
         </section>
