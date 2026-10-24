@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Package, getTypeIcon } from "@/lib/registry";
+import { Package } from "@/lib/registry";
+import { CheckIcon, TypeIcon } from "@/components/TypeIcon";
 
 export function PackageCard({ pkg }: { pkg: Package }) {
   const [copied, setCopied] = useState(false);
@@ -26,7 +27,9 @@ export function PackageCard({ pkg }: { pkg: Package }) {
     <div className="glass rounded-2xl p-6 hover:border-[rgba(49,229,255,0.3)] transition-all duration-300 hover:-translate-y-1 group">
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center gap-3">
-          <span className="text-2xl">{getTypeIcon(pkg.type)}</span>
+          <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-[rgba(49,229,255,0.16)] bg-[rgba(49,229,255,0.06)] text-cyan-300">
+            <TypeIcon type={pkg.type} className="h-5 w-5" />
+          </span>
           <div>
             <h3 className="font-bold text-lg text-white group-hover:text-cyan-400 transition-colors">
               {pkg.name}
@@ -64,7 +67,7 @@ export function PackageCard({ pkg }: { pkg: Package }) {
             onClick={copy}
             className="px-3 py-1 text-xs rounded-md bg-[rgba(49,229,255,0.1)] text-cyan-400 hover:bg-[rgba(49,229,255,0.2)] transition-colors font-semibold"
           >
-            {copied ? "✓ Copied" : "Copy"}
+            {copied ? <span className="inline-flex items-center gap-1"><CheckIcon className="h-3.5 w-3.5" /> Copied</span> : "Copy"}
           </button>
         </div>
       </div>

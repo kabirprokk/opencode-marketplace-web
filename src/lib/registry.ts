@@ -44,15 +44,3 @@ export function getTypeColor(type: PackageType): string {
   };
   return colors[type] || "cyan";
 }
-
-export function getTypeIcon(type: PackageType): string {
-  const icons: Record<PackageType, string> = {
-    skill: "⚡",
-    agent: "🤖",
-    command: "⌨️",
-    "skill-pack": "📦",
-    plugin: "🔌",
-    mcp: "🔗",
-  };
-  return icons[type] || "📦";
-}

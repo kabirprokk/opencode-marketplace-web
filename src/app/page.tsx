@@ -4,6 +4,7 @@ import { useEffect, useState, useMemo } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { PackageCard } from "@/components/PackageCard";
+import { SearchIcon } from "@/components/TypeIcon";
 import { fetchRegistry, Package, PackageType } from "@/lib/registry";
 
 const TYPES: { value: PackageType | "all"; label: string }[] = [
@@ -103,7 +104,7 @@ export default function Home() {
                 onChange={(e) => setQuery(e.target.value)}
                 className="w-full px-5 py-3 rounded-xl glass text-white placeholder-dim focus:outline-none focus:border-cyan-400 transition-colors"
               />
-              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-dim">🔍</span>
+              <SearchIcon className="absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-dim" />
             </div>
             <div className="flex gap-2 flex-wrap">
               {TYPES.map((t) => (
