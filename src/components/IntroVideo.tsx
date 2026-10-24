@@ -1,25 +1,57 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const INTRO_SEEN_KEY = "ocm-intro-seen-v1";
 const INTRO_VIDEO = "/opencode-intro.mp4";
+const INTRO_POSTER = "/opencode-intro-poster.jpg";
 
 export function IntroVideo() {
   const [showIntro, setShowIntro] = useState(false);
+  const skipButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     try {
       if (window.localStorage.getItem(INTRO_SEEN_KEY)) return;
-      window.localStorage.setItem(INTRO_SEEN_KEY, "1");
     } catch {
       // Storage may be disabled; still show the intro for this page view.
     }
 
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const frame = window.requestAnimationFrame(() => setShowIntro(true));
+    // Defer the one-time marker until the effect survives Strict Mode cleanup.
+    const frame = window.requestAnimationFrame(() => {
+      try {
+        window.localStorage.setItem(INTRO_SEEN_KEY, "1");
+      } catch {
+        // Keep the intro available even when storage is blocked.
+      }
+      setShowIntro(true);
+    });
     return () => window.cancelAnimationFrame(frame);
   }, []);
+
+  useEffect(() => {
+    if (!showIntro) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    skipButtonRef.current?.focus();
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setShowIntro(false);
+      } else if (event.key === "Tab") {
+        event.preventDefault();
+        skipButtonRef.current?.focus();
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [showIntro]);
 
   return (
     <>
@@ -44,6 +76,7 @@ export function IntroVideo() {
             controls
             playsInline
             preload="metadata"
+            poster={INTRO_POSTER}
             src={INTRO_VIDEO}
             aria-label="OpenCode Marketplace logo intro"
           >
@@ -64,12 +97,15 @@ export function IntroVideo() {
             muted
             playsInline
             preload="auto"
+            poster={INTRO_POSTER}
             src={INTRO_VIDEO}
             onEnded={() => setShowIntro(false)}
+            onError={() => setShowIntro(false)}
             className="max-h-full w-full max-w-6xl object-contain"
             aria-label="OpenCode Marketplace logo intro"
           />
           <button
+            ref={skipButtonRef}
             type="button"
             onClick={() => setShowIntro(false)}
             className="absolute right-5 top-5 rounded-full border border-white/25 bg-black/50 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-white/15 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
