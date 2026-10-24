@@ -22,11 +22,36 @@ export interface Registry {
 const REGISTRY_URL =
   "https://raw.githubusercontent.com/kabirprokk/opencode-registry/main/registry.json";
 
+function isPackage(value: unknown): value is Package {
+  if (!value || typeof value !== "object") return false;
+  const pkg = value as Record<string, unknown>;
+  return typeof pkg.name === "string" &&
+    typeof pkg.type === "string" &&
+    typeof pkg.version === "string" &&
+    typeof pkg.description === "string" &&
+    typeof pkg.author === "string" &&
+    typeof pkg.repo === "string" &&
+    (pkg.path === undefined || typeof pkg.path === "string") &&
+    typeof pkg.install === "string" &&
+    Array.isArray(pkg.tags) && pkg.tags.every((tag) => typeof tag === "string") &&
+    typeof pkg.license === "string";
+}
+
+function isRegistry(value: unknown): value is Registry {
+  if (!value || typeof value !== "object") return false;
+  const registry = value as Record<string, unknown>;
+  return typeof registry.version === "number" &&
+    typeof registry.updated === "string" &&
+    Array.isArray(registry.packages) && registry.packages.every(isPackage);
+}
+
 export async function fetchRegistry(): Promise<Registry> {
   try {
     const res = await fetch(REGISTRY_URL, { next: { revalidate: 300 } });
     if (!res.ok) throw new Error("Failed to fetch registry");
-    return res.json();
+    const registry: unknown = await res.json();
+    if (!isRegistry(registry)) throw new Error("Registry response has an invalid format");
+    return registry;
   } catch {
     // Fallback to empty registry on error
     return { version: 1, updated: "", packages: [] };

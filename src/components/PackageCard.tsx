@@ -9,9 +9,13 @@ export function PackageCard({ pkg }: { pkg: Package }) {
   const installCmd = `ocm install ${pkg.name}`;
 
   const copy = async () => {
-    await navigator.clipboard.writeText(installCmd);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    try {
+      await navigator.clipboard.writeText(installCmd);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1800);
+    } catch {
+      setCopied(false);
+    }
   };
 
   const typeClass: Record<string, string> = {
@@ -24,7 +28,7 @@ export function PackageCard({ pkg }: { pkg: Package }) {
   };
 
   return (
-    <div className="glass rounded-2xl p-6 hover:border-[rgba(49,229,255,0.3)] transition-all duration-300 hover:-translate-y-1 group">
+    <article className="glass rounded-2xl p-5 sm:p-6 hover:border-[rgba(49,229,255,0.3)] transition-colors duration-150 group">
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center gap-3">
           <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-[rgba(49,229,255,0.16)] bg-[rgba(49,229,255,0.06)] text-cyan-300">
@@ -71,6 +75,6 @@ export function PackageCard({ pkg }: { pkg: Package }) {
           </button>
         </div>
       </div>
-    </div>
+    </article>
   );
 }
