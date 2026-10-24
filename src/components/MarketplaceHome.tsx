@@ -132,7 +132,7 @@ export function MarketplaceHome({ packages }: { packages: Package[] }) {
                 Browse
               </p>
               <h2 className="display-serif text-3xl tracking-tight text-[var(--txt)] sm:text-4xl">
-                The directory
+                Explore packages
               </h2>
             </div>
             <p className="max-w-xs text-sm leading-6 text-[var(--muted)]">
