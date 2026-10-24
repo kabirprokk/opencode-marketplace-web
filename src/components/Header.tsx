@@ -75,25 +75,26 @@ export function Header() {
             priority
             className="h-8 w-8 shrink-0 rounded-lg"
           />
-          <span className="truncate text-sm font-semibold tracking-tight text-[var(--txt)]">
-            OCM Skill
+          <span className="flex min-w-0 flex-col leading-tight">
+            <span className="truncate text-sm font-bold tracking-[0.08em] text-[var(--txt)]">OCM</span>
+            <span className="hidden truncate pt-0.5 text-[10px] text-[var(--muted)] sm:block">OpenCode community index</span>
           </span>
         </Link>
 
         <nav className="hidden items-center gap-1 sm:flex">
-          <Link
-            href="/marketplace"
-            className="rounded-md px-3 py-2 text-sm text-[var(--muted)] transition-colors hover:text-[var(--txt)]"
-          >
-            Browse
+          <Link href="/marketplace" className="rounded-md px-3 py-2 text-sm text-[var(--muted)] transition-colors hover:text-[var(--txt)]">
+            Directory
           </Link>
+          <a href="https://github.com/kabirprokk/opencode-registry" target="_blank" rel="noopener noreferrer" className="rounded-md px-3 py-2 text-sm text-[var(--muted)] transition-colors hover:text-[var(--txt)]">
+            Registry
+          </a>
           <a
             href="https://github.com/kabirprokk/opencode-marketplace"
             target="_blank"
             rel="noopener noreferrer"
             className="ml-2 rounded-lg bg-[var(--accent)] px-4 py-2 text-sm font-semibold text-[var(--accent-foreground)] transition-opacity hover:opacity-90"
           >
-            Get CLI
+            Get OCM
           </a>
           <ThemeToggle />
         </nav>

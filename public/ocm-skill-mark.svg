@@ -1,31 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-label="OCM Skill">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#0F172A"/>
-      <stop offset="1" stop-color="#1E1B4B"/>
-    </linearGradient>
-    <linearGradient id="ring" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#22D3EE"/>
-      <stop offset="0.5" stop-color="#818CF8"/>
-      <stop offset="1" stop-color="#F472B6"/>
-    </linearGradient>
-    <linearGradient id="spark" x1="24" y1="20" x2="40" y2="44" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#FDE68A"/>
-      <stop offset="1" stop-color="#FB7185"/>
-    </linearGradient>
-    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="1.6" result="b"/>
-      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-  </defs>
-  <rect width="64" height="64" rx="18" fill="url(#bg)"/>
-  <rect x="1" y="1" width="62" height="62" rx="17" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-  <!-- open ring: O -->
-  <path d="M32 10 A22 22 0 1 1 14.5 44" stroke="url(#ring)" stroke-width="5" stroke-linecap="round" fill="none" filter="url(#glow)"/>
-  <!-- inner arc: C -->
-  <path d="M46 22 A14 14 0 0 0 32 18" stroke="url(#ring)" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.55"/>
-  <!-- spark -->
-  <path d="M32 22 L34.6 29.4 L42 32 L34.6 34.6 L32 42 L29.4 34.6 L22 32 L29.4 29.4 Z" fill="url(#spark)" filter="url(#glow)"/>
-  <!-- orbit dot -->
-  <circle cx="49" cy="15" r="2.6" fill="#22D3EE" filter="url(#glow)"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-label="OCM community constellation mark">
+  <rect width="64" height="64" rx="17" fill="#171914"/>
+  <path d="M13 21h13l8 10h17M34 31v14h14M15 43h10l9-12" stroke="#E6EBB0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="13" cy="21" r="4" fill="#E6EBB0"/>
+  <circle cx="51" cy="31" r="4" fill="#E6EBB0"/>
+  <circle cx="48" cy="45" r="4" fill="#E6EBB0"/>
+  <circle cx="15" cy="43" r="4" fill="#E6EBB0"/>
+  <rect x="29" y="26" width="10" height="10" rx="2" fill="#D7F36A" stroke="#171914" stroke-width="2"/>
+  <path d="M32 31h4m-2-2v4" stroke="#171914" stroke-width="1.5" stroke-linecap="round"/>
 </svg>

@@ -7,6 +7,7 @@ import { CheckIcon } from "@/components/TypeIcon";
 export function PackageCard({ pkg, showType = true }: { pkg: Package; showType?: boolean }) {
   const [copied, setCopied] = useState(false);
   const installCmd = `ocm install ${pkg.name}`;
+  const sourceHref = /^https?:\/\//i.test(pkg.repo) ? pkg.repo : null;
   const PackageHeading = showType ? "h2" : "h3";
 
   const copy = async () => {
@@ -57,6 +58,17 @@ export function PackageCard({ pkg, showType = true }: { pkg: Package; showType?:
             <span className="text-[10px] text-[var(--muted)]">+{pkg.tags.length - 4}</span>
           )}
         </div>
+      )}
+      {sourceHref && (
+        <a
+          href={sourceHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-3 inline-flex min-h-9 w-fit items-center gap-1 text-xs font-medium text-[var(--accent-text)] underline-offset-4 hover:underline"
+          aria-label={`Inspect source repository for ${pkg.name}`}
+        >
+          Inspect source <span aria-hidden="true">↗</span>
+        </a>
       )}
       <button
         onClick={copy}

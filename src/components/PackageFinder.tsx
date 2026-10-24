@@ -110,7 +110,89 @@ export function PackageFinder({ packages }: { packages: Package[] }) {
   }
 
   return (
-    <section id="finder" className="mx-auto max-w-7xl px-5 pb-12 sm:px-6 sm:pb-16">
+    <>
+      <section className="relative isolate overflow-hidden border-b border-[var(--line)]">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_78%_20%,color-mix(in_srgb,var(--accent)_10%,transparent),transparent_38%)]" />
+        <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 py-14 sm:px-6 sm:py-20 lg:grid-cols-[1.08fr_0.92fr] lg:gap-12 lg:py-24">
+          <div className="max-w-2xl">
+            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--accent-text)]">An independent community index</p>
+            <h1 className="mt-5 max-w-xl font-serif text-5xl font-medium leading-[1.02] tracking-[-0.045em] text-[var(--txt)] sm:text-6xl lg:text-7xl">
+              More ways to make OpenCode yours.
+            </h1>
+            <p className="mt-6 max-w-xl text-base leading-7 text-[var(--muted)] sm:text-lg sm:leading-8">
+              Find community-built skills, agents, commands, plugins, and MCP servers—then inspect the source before you install.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <Link href="/marketplace" className="inline-flex min-h-12 items-center gap-3 rounded-md bg-[var(--accent)] px-5 text-sm font-bold text-[var(--accent-foreground)] transition-transform hover:-translate-y-0.5">
+                Explore the directory <span aria-hidden="true">↗</span>
+              </Link>
+              <a href="https://github.com/kabirprokk/opencode-marketplace" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center rounded-md border border-[var(--line-strong)] px-4 text-sm font-medium text-[var(--txt)] transition-colors hover:bg-[var(--surface-overlay)]">
+                Inspect the project
+              </a>
+            </div>
+            <p className="mt-5 text-xs leading-5 text-[var(--muted)]">Community-maintained. Not affiliated with or endorsed by Anomaly.</p>
+          </div>
+
+          <div className="relative mx-auto w-full max-w-lg">
+            <div className="absolute -inset-5 rounded-[2rem] border border-[var(--line)] opacity-60" aria-hidden="true" />
+            <div className="relative overflow-hidden rounded-2xl border border-[var(--line-strong)] bg-[var(--surface)] p-5 shadow-2xl sm:p-7">
+              <div className="flex items-center justify-between border-b border-[var(--line)] pb-4">
+                <div>
+                  <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--muted)]">The community graph</p>
+                  <p className="mt-1 text-sm font-semibold text-[var(--txt)]">One place to find your next tool</p>
+                </div>
+                <span className="rounded-full border border-[var(--line)] px-2.5 py-1 font-mono text-[10px] text-[var(--muted)]">OPEN INDEX</span>
+              </div>
+              <svg className="mt-4 h-auto w-full" viewBox="0 0 440 250" role="img" aria-labelledby="graph-title graph-desc">
+                <title id="graph-title">OCM community package map</title>
+                <desc id="graph-desc">A central open index connects to skills, agents, commands, and MCP servers.</desc>
+                <g fill="none" stroke="var(--line-strong)" strokeWidth="1.5">
+                  <path d="M220 122 104 65M220 122 334 58M220 122 94 184M220 122 344 190" />
+                  <path d="M104 65h-34M334 58h35M94 184h-32M344 190h35" strokeDasharray="3 6" />
+                </g>
+                <g fill="var(--surface-overlay)" stroke="var(--line-strong)" strokeWidth="1.5">
+                  <rect x="27" y="38" width="112" height="52" rx="8" />
+                  <rect x="301" y="32" width="112" height="52" rx="8" />
+                  <rect x="22" y="158" width="112" height="52" rx="8" />
+                  <rect x="306" y="164" width="112" height="52" rx="8" />
+                  <rect x="165" y="86" width="110" height="72" rx="12" fill="var(--bg)" />
+                </g>
+                <g fill="var(--txt)" fontFamily="ui-monospace, monospace" fontSize="11" fontWeight="600" textAnchor="middle">
+                  <text x="83" y="68">SKILLS</text><text x="357" y="62">AGENTS</text>
+                  <text x="78" y="188">COMMANDS</text><text x="362" y="194">MCP SERVERS</text>
+                  <text x="220" y="119" fontSize="10" fill="var(--muted)">COMMUNITY</text>
+                  <text x="220" y="137" fontSize="16" fontWeight="700">OCM</text>
+                </g>
+                <circle cx="220" cy="122" r="5" fill="var(--accent)" />
+                <circle cx="104" cy="65" r="3" fill="var(--accent)" />
+                <circle cx="334" cy="58" r="3" fill="var(--accent)" />
+                <circle cx="94" cy="184" r="3" fill="var(--accent)" />
+                <circle cx="344" cy="190" r="3" fill="var(--accent)" />
+              </svg>
+              <div className="flex items-center justify-between border-t border-[var(--line)] pt-4 text-xs text-[var(--muted)]">
+                <span>{packages.length.toLocaleString()} listed packages</span>
+                <a href="https://github.com/kabirprokk/opencode-registry" target="_blank" rel="noopener noreferrer" className="font-medium text-[var(--accent-text)] hover:underline">View registry source ↗</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-px border-b border-[var(--line)] bg-[var(--line)] px-5 sm:px-6 md:grid-cols-4">
+        {[
+          { value: packages.length.toLocaleString(), label: "community packages" },
+          { value: packageTypes.length.toString().padStart(2, "0"), label: "package types" },
+          { value: "Open", label: "source registry" },
+          { value: "Independent", label: "community project" },
+        ].map((item) => (
+          <div key={item.label} className="bg-[var(--bg)] px-3 py-5 sm:px-5 sm:py-6">
+            <p className="font-serif text-xl text-[var(--txt)] sm:text-2xl">{item.value}</p>
+            <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.12em] text-[var(--muted)] sm:text-[10px]">{item.label}</p>
+          </div>
+        ))}
+      </div>
+
+      <section id="finder" className="mx-auto max-w-7xl px-5 pb-12 pt-12 sm:px-6 sm:pb-16 sm:pt-16">
       <div className="rounded-xl border border-[var(--line)] bg-[var(--surface)] p-5 sm:p-8">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
@@ -247,6 +329,22 @@ export function PackageFinder({ packages }: { packages: Package[] }) {
           </section>
         </>
       )}
-    </section>
+      </section>
+
+      <section id="maintainers" className="mx-auto max-w-7xl px-5 pb-16 sm:px-6 sm:pb-24">
+        <div className="grid gap-6 rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-6 sm:p-9 lg:grid-cols-[1fr_auto] lg:items-center">
+          <div className="max-w-2xl">
+            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--accent-text)]">For the OpenCode maintainers</p>
+            <h2 className="mt-3 font-serif text-3xl tracking-tight text-[var(--txt)] sm:text-4xl">Built by the community. Open to your review.</h2>
+            <p className="mt-3 max-w-xl text-sm leading-6 text-[var(--muted)]">OCM is an independent directory with a public registry and CLI. If this could be useful to the OpenCode ecosystem, we welcome feedback and a conversation about where it belongs.</p>
+            <p className="mt-3 text-xs leading-5 text-[var(--muted)]">OCM is not affiliated with or endorsed by Anomaly. Package sources and permissions should be reviewed before installation.</p>
+          </div>
+          <div className="flex flex-wrap gap-3 lg:justify-end">
+            <a href="https://github.com/kabirprokk/opencode-marketplace" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center rounded-md bg-[var(--accent)] px-4 text-sm font-semibold text-[var(--accent-foreground)] hover:opacity-90">Review OCM on GitHub ↗</a>
+            <a href="https://github.com/kabirprokk/opencode-registry" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center rounded-md border border-[var(--line-strong)] px-4 text-sm font-medium text-[var(--txt)] hover:bg-[var(--surface-overlay)]">Inspect registry ↗</a>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

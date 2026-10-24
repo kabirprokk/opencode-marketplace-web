@@ -83,13 +83,17 @@ export function MarketplaceHome({ packages }: { packages: Package[] }) {
           <div className="border-b border-[var(--line)] pb-6">
             <div className="flex flex-wrap items-end justify-between gap-4">
               <div>
-                <h1 className="text-3xl font-semibold tracking-tight text-[var(--txt)] sm:text-4xl">
-                  Community packages
+                <p className="mb-3 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--accent-text)]">Independent community index</p>
+                <h1 className="font-serif text-4xl font-medium tracking-tight text-[var(--txt)] sm:text-5xl">
+                  The directory
                 </h1>
-                <p className="mt-2 text-sm text-[var(--muted)]">
-                  Skills, agents, and commands for OpenCode.
+                <p className="mt-3 max-w-2xl text-sm leading-6 text-[var(--muted)]">
+                  Explore skills, agents, commands, plugins, and MCP servers shared by the community. Inspect each source before installing.
                 </p>
               </div>
+              <a href="https://github.com/kabirprokk/opencode-registry" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-10 items-center gap-2 rounded-md border border-[var(--line)] px-3 text-xs font-medium text-[var(--muted)] transition-colors hover:bg-[var(--surface-overlay)] hover:text-[var(--txt)]">
+                Registry source <span aria-hidden="true">↗</span>
+              </a>
             </div>
 
             <div className="mt-6 grid gap-3 sm:grid-cols-[minmax(0,1fr)_160px_160px]">
