@@ -156,22 +156,22 @@ export function PackageFinder({ packages }: { packages: Package[] }) {
                   <text x="220" y="119" fontSize="10" fill="var(--muted)">COMMUNITY</text>
                   <text x="220" y="137" fontSize="16" fontWeight="700">OCM</text>
                 </g>
-                <a href="/marketplace?type=skill" aria-label="Browse all skills" tabIndex={0} className="group cursor-pointer focus-visible:outline-none">
+                <Link href="/opencode-skills" aria-label="Browse all skills" tabIndex={0} className="group cursor-pointer focus-visible:outline-none">
                   <rect x="27" y="38" width="112" height="52" rx="8" fill="var(--surface-overlay)" stroke="var(--line-strong)" strokeWidth="1.5" className="transition-colors group-hover:stroke-[var(--accent)] group-focus-visible:stroke-[var(--accent)]" />
                   <text x="83" y="68" fill="var(--txt)" fontFamily="ui-monospace, monospace" fontSize="11" fontWeight="600" textAnchor="middle">SKILLS</text>
-                </a>
-                <a href="/marketplace?type=agent" aria-label="Browse all agents" tabIndex={0} className="group cursor-pointer focus-visible:outline-none">
+                </Link>
+                <Link href="/opencode-agents" aria-label="Browse all agents" tabIndex={0} className="group cursor-pointer focus-visible:outline-none">
                   <rect x="301" y="32" width="112" height="52" rx="8" fill="var(--surface-overlay)" stroke="var(--line-strong)" strokeWidth="1.5" className="transition-colors group-hover:stroke-[var(--accent)] group-focus-visible:stroke-[var(--accent)]" />
                   <text x="357" y="62" fill="var(--txt)" fontFamily="ui-monospace, monospace" fontSize="11" fontWeight="600" textAnchor="middle">AGENTS</text>
-                </a>
-                <a href="/marketplace?type=command" aria-label="Browse all commands" tabIndex={0} className="group cursor-pointer focus-visible:outline-none">
+                </Link>
+                <Link href="/opencode-commands" aria-label="Browse all commands" tabIndex={0} className="group cursor-pointer focus-visible:outline-none">
                   <rect x="22" y="158" width="112" height="52" rx="8" fill="var(--surface-overlay)" stroke="var(--line-strong)" strokeWidth="1.5" className="transition-colors group-hover:stroke-[var(--accent)] group-focus-visible:stroke-[var(--accent)]" />
                   <text x="78" y="188" fill="var(--txt)" fontFamily="ui-monospace, monospace" fontSize="11" fontWeight="600" textAnchor="middle">COMMANDS</text>
-                </a>
-                <a href="/marketplace?type=mcp" aria-label="Browse all MCP servers" tabIndex={0} className="group cursor-pointer focus-visible:outline-none">
+                </Link>
+                <Link href="/opencode-mcp-servers" aria-label="Browse all MCP servers" tabIndex={0} className="group cursor-pointer focus-visible:outline-none">
                   <rect x="306" y="164" width="112" height="52" rx="8" fill="var(--surface-overlay)" stroke="var(--line-strong)" strokeWidth="1.5" className="transition-colors group-hover:stroke-[var(--accent)] group-focus-visible:stroke-[var(--accent)]" />
                   <text x="362" y="194" fill="var(--txt)" fontFamily="ui-monospace, monospace" fontSize="11" fontWeight="600" textAnchor="middle">MCP SERVERS</text>
-                </a>
+                </Link>
               </svg>
               <div className="flex items-center justify-between border-t border-[var(--line)] pt-4 text-xs text-[var(--muted)]">
                 <span>{packages.length.toLocaleString()} listed packages</span>

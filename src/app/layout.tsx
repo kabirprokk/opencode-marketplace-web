@@ -7,11 +7,11 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 export const metadata: Metadata = {
   metadataBase: new URL("https://ocms.pages.dev"),
   title: {
-    default: "OpenCode Marketplace (OCM) — Skills, Agents & Tools",
+    default: "OpenCode Skills & Agents Marketplace | OCM",
     template: "%s | OpenCode Marketplace",
   },
   description:
-    "Find community-built coding agents, skills, commands, plugins, and MCP servers for OpenCode. Browse the independent OpenCode Marketplace and inspect sources before installing.",
+    "Find OpenCode skills, AI coding agents, commands, skill packs, and MCP servers in an independent community directory. Browse listings and inspect sources before installing.",
   applicationName: "OpenCode Marketplace",
   category: "developer tools",
   keywords: [
@@ -21,6 +21,10 @@ export const metadata: Metadata = {
     "coding agents",
     "AI coding tools",
     "OpenCode agents",
+    "OpenCode commands",
+    "OpenCode skill packs",
+    "MCP servers for OpenCode",
+    "OpenCode MCP servers",
     "MCP servers",
     "developer tools",
   ],
@@ -42,20 +46,20 @@ export const metadata: Metadata = {
     google: "TcpX8wM2gOfL2XigaiM58ssNxeyO5uGO3Eo0SL3fYFU",
   },
   openGraph: {
-    title: "OpenCode Marketplace (OCM) — Skills, Agents & Tools",
+    title: "OpenCode Skills & Agents Marketplace | OCM",
     description:
-      "Discover community-built skills, coding agents, commands, plugins, and MCP servers for OpenCode. Inspect the source before installing.",
+      "Discover community-built OpenCode skills, agents, commands, skill packs, and MCP servers. Inspect each source before installing.",
     url: "/",
     siteName: "OpenCode Marketplace",
     type: "website",
-    images: ["/icon.svg"],
+    images: [{ url: "/opencode-intro-poster.jpg", width: 960, height: 540, alt: "OpenCode Marketplace community directory" }],
   },
   twitter: {
-    card: "summary",
-    title: "OpenCode Marketplace (OCM)",
+    card: "summary_large_image",
+    title: "OpenCode Skills & Agents Marketplace | OCM",
     description:
-      "Community-built skills, coding agents, commands, plugins, and MCP servers for OpenCode.",
-    images: ["/icon.svg"],
+      "Community-built OpenCode skills, agents, commands, skill packs, and MCP servers.",
+    images: ["/opencode-intro-poster.jpg"],
   },
 };
 

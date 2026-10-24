@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Package } from "@/lib/registry";
 import { CheckIcon } from "@/components/TypeIcon";
 
@@ -41,7 +42,9 @@ export function PackageCard({ pkg, showType = true }: { pkg: Package; showType?:
         </div>
       )}
       <PackageHeading className="truncate text-base font-semibold tracking-tight text-[var(--txt)] transition-colors group-hover:text-[var(--accent-text)]">
-        {pkg.name}
+        <Link href={`/packages/${encodeURIComponent(pkg.name)}`} aria-label={`View ${pkg.name} package details`}>
+          {pkg.name}
+        </Link>
       </PackageHeading>
       <p className="mt-2 line-clamp-3 flex-1 text-sm leading-6 text-[var(--muted)]">
         {pkg.description}
