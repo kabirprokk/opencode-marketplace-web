@@ -74,6 +74,12 @@ export function Header() {
         </Link>
 
         <nav className="hidden items-center gap-1 sm:flex">
+          <Link
+            href="/marketplace"
+            className="rounded-md px-3 py-2 text-sm text-[var(--muted)] transition-colors hover:text-[var(--txt)]"
+          >
+            Browse
+          </Link>
           <a
             href="https://github.com/kabirprokk/opencode-marketplace"
             target="_blank"
@@ -87,14 +93,12 @@ export function Header() {
 
         <div className="flex items-center gap-2 sm:hidden">
           <ThemeToggle />
-          <a
-            href="https://github.com/kabirprokk/opencode-marketplace"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/marketplace"
             className="inline-flex min-h-11 items-center rounded-md bg-[var(--accent)] px-3 text-xs font-semibold text-[var(--accent-foreground)]"
           >
-            Get CLI
-          </a>
+            Browse
+          </Link>
         </div>
       </div>
     </header>

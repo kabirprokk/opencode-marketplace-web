@@ -1,7 +1,7 @@
-import { MarketplaceHome } from "@/components/MarketplaceHome";
+import { LandingHome } from "@/components/LandingHome";
 import { fetchRegistry } from "@/lib/registry";
 
-export default async function Home() {
+export default async function HomePage() {
   const registry = await fetchRegistry();
-  return <MarketplaceHome packages={registry.packages} />;
+  return <LandingHome packages={registry.packages} />;
 }
