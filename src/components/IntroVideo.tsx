@@ -73,9 +73,11 @@ export function IntroVideo() {
           </div>
           <video
             className="aspect-video w-full rounded-lg border border-[var(--line)] bg-black object-contain"
-            controls
+            autoPlay
+            muted
+            loop
             playsInline
-            preload="metadata"
+            preload="auto"
             poster={INTRO_POSTER}
             src={INTRO_VIDEO}
             aria-label="OpenCode Marketplace logo intro"
