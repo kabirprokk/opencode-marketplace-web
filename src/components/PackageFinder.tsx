@@ -201,7 +201,7 @@ export function PackageFinder({ packages }: { packages: Package[] }) {
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="mb-2 text-xs font-medium uppercase tracking-[0.12em] text-[var(--muted)]">Quick match · no typing</p>
-            <h1 className="text-2xl font-semibold tracking-tight text-[var(--txt)] sm:text-3xl">What do you want help with?</h1>
+            <h2 className="text-2xl font-semibold tracking-tight text-[var(--txt)] sm:text-3xl">What do you want help with?</h2>
             <p className="mt-2 text-sm text-[var(--muted)]">Pick up to three cards. We’ll match them to packages in the catalog.</p>
           </div>
           {selectedTopics.length > 0 && (
