@@ -115,7 +115,7 @@ export function PackageFinder({ packages }: { packages: Package[] }) {
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_78%_20%,color-mix(in_srgb,var(--accent)_10%,transparent),transparent_38%)]" />
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 py-14 sm:px-6 sm:py-20 lg:grid-cols-[1.08fr_0.92fr] lg:gap-12 lg:py-24">
           <div className="max-w-2xl">
-            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--accent-text)]">OpenCode Marketplace of Skills</p>
+            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--accent-text)]">OpenCode Marketplace</p>
             <h1 className="mt-5 max-w-xl font-serif text-5xl font-medium leading-[1.02] tracking-[-0.045em] text-[var(--txt)] sm:text-6xl lg:text-7xl">
               More ways to make OpenCode yours.
             </h1>
