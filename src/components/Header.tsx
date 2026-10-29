@@ -85,6 +85,9 @@ export function Header() {
           <Link href="/marketplace" className="rounded-md px-3 py-2 text-sm text-[var(--muted)] transition-colors hover:text-[var(--txt)]">
             Directory
           </Link>
+          <Link href="/collection" className="rounded-md px-3 py-2 text-sm text-[var(--muted)] transition-colors hover:text-[var(--txt)]">
+            Collection
+          </Link>
           <a href="https://github.com/kabirprokk/opencode-registry" target="_blank" rel="noopener noreferrer" className="rounded-md px-3 py-2 text-sm text-[var(--muted)] transition-colors hover:text-[var(--txt)]">
             Registry
           </a>
