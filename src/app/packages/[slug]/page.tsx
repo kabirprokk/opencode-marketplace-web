@@ -71,7 +71,7 @@ export default async function PackageDetailPage({ params }: PageProps) {
   const category = getSeoCategoryForType(pkg.type);
   const related = packages.filter((entry) => entry.type === pkg.type && entry.name !== pkg.name).slice(0, 3);
   const url = `https://ocms.pages.dev${packageUrl(pkg.name)}`;
-  const supportsOcmInstall = pkg.type !== "mcp" && pkg.type !== "plugin";
+  const supportsOcmInstall = pkg.type !== "mcp";
   const breadcrumbData = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",

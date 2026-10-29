@@ -98,3 +98,14 @@ export function getSeoCategory(slug: string) {
 export function getSeoCategoryForType(type: PackageType) {
   return SEO_CATEGORIES.find((category) => category.type === type);
 }
+
+// Compile-time guard: supported package types and SEO category definitions must
+// stay in sync. If a type is added/removed in either place, this fails to build.
+type _CategoryTypeParity =
+  PackageType extends (typeof SEO_CATEGORIES)[number]["type"]
+    ? (typeof SEO_CATEGORIES)[number]["type"] extends PackageType
+      ? true
+      : never
+    : never;
+const _categoryTypeParity: _CategoryTypeParity = true;
+void _categoryTypeParity;

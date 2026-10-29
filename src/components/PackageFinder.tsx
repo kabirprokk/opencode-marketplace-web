@@ -50,7 +50,6 @@ const TYPE_LABELS: Record<string, string> = {
   agent: "Agents",
   command: "Commands",
   "skill-pack": "Skill packs",
-  plugin: "Plugins",
   mcp: "MCP servers",
 };
 
@@ -120,7 +119,7 @@ export function PackageFinder({ packages }: { packages: Package[] }) {
               More ways to make OpenCode yours.
             </h1>
             <p className="mt-6 max-w-xl text-base leading-7 text-[var(--muted)] sm:text-lg sm:leading-8">
-              Find community-built skills, agents, commands, plugins, and MCP servers—then inspect the source before you install.
+              Find community-built skills, agents, commands, skill packs, and MCP servers—then inspect the source before you install.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link href="/marketplace" className="inline-flex min-h-12 items-center gap-3 rounded-md bg-[var(--accent)] px-5 text-sm font-bold text-[var(--accent-foreground)] transition-transform hover:-translate-y-0.5">

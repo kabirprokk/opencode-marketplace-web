@@ -5,7 +5,7 @@ import { fetchRegistry } from "@/lib/registry";
 export const metadata = {
   title: "OpenCode Skills, Agents & MCP Tools Directory",
   description:
-    "Search the community directory of OpenCode skills, coding agents, commands, plugins, and MCP servers. Review package details and source links before installing.",
+    "Search the community directory of OpenCode skills, coding agents, commands, skill packs, and MCP servers. Review package details and source links before installing.",
   alternates: {
     canonical: "/marketplace/",
   },

@@ -1,4 +1,4 @@
-export type PackageType = "skill" | "agent" | "command" | "skill-pack" | "plugin" | "mcp";
+export type PackageType = "skill" | "agent" | "command" | "skill-pack" | "mcp";
 
 export interface Package {
   name: string;
@@ -64,7 +64,6 @@ export function getTypeColor(type: PackageType): string {
     agent: "violet",
     command: "ok",
     "skill-pack": "warn",
-    plugin: "cyan",
     mcp: "violet",
   };
   return colors[type] || "cyan";

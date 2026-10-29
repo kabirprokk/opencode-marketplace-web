@@ -5,7 +5,6 @@ const paths: Record<PackageType, React.ReactNode> = {
   agent: <><circle cx="12" cy="8" r="4" /><path d="M4 21a8 8 0 0 1 16 0M12 2V1m-7 7H4m16 0h-1" /></>,
   command: <><rect x="3" y="4" width="18" height="16" rx="3" /><path d="m7 9 3 3-3 3m6 0h4" /></>,
   "skill-pack": <><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z" /><path d="m4.5 7.8 7.5 4.4 7.5-4.4M12 12.2V21m-4-16.8 8 4.6" /></>,
-  plugin: <><path d="M9 3v4m6-4v4M7 7h10v4a3 3 0 0 0 3 3h1v3a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4v-3h1a3 3 0 0 0 3-3V7Z" /></>,
   mcp: <><circle cx="6" cy="12" r="2.5" /><circle cx="18" cy="6" r="2.5" /><circle cx="18" cy="18" r="2.5" /><path d="m8.3 10.9 7.4-3.8m-7.4 5.9 7.4 3.8" /></>,
 };
 

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { SEO_CATEGORIES } from "@/lib/seo-categories";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -11,20 +12,15 @@ export const metadata: Metadata = {
     template: "%s | OpenCode Marketplace",
   },
   description:
-    "Find OpenCode skills, AI coding agents, commands, skill packs, and MCP servers in an independent community directory. Browse listings and inspect sources before installing.",
+    `Find ${SEO_CATEGORIES.map((category) => category.label.toLowerCase()).join(", ")} in an independent community directory. Browse listings and inspect sources before installing.`,
   applicationName: "OpenCode Marketplace",
   category: "developer tools",
   keywords: [
     "OpenCode",
     "OpenCode marketplace",
-    "OpenCode skills",
+    ...SEO_CATEGORIES.flatMap((category) => [category.label, `${category.label} for OpenCode`]),
     "coding agents",
     "AI coding tools",
-    "OpenCode agents",
-    "OpenCode commands",
-    "OpenCode skill packs",
-    "MCP servers for OpenCode",
-    "OpenCode MCP servers",
     "MCP servers",
     "developer tools",
   ],
@@ -80,7 +76,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   alternateName: "OCM",
                   url: "https://ocms.pages.dev/",
                   description:
-                    "An independent community directory of skills, agents, commands, plugins, and MCP servers for OpenCode.",
+                    "An independent community directory of skills, agents, commands, skill packs, and MCP servers for OpenCode.",
                   sameAs: [
                     "https://github.com/kabirprokk/opencode-marketplace",
                     "https://github.com/kabirprokk/opencode-registry",

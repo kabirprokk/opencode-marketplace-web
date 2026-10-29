@@ -13,7 +13,6 @@ const TYPES: { value: PackageType | "all"; label: string }[] = [
   { value: "agent", label: "Agents" },
   { value: "command", label: "Commands" },
   { value: "skill-pack", label: "Skill packs" },
-  { value: "plugin", label: "Plugins" },
   { value: "mcp", label: "MCP servers" },
 ];
 
@@ -90,7 +89,7 @@ export function MarketplaceHome({ packages }: { packages: Package[] }) {
                   The directory
                 </h1>
                 <p className="mt-3 max-w-2xl text-sm leading-6 text-[var(--muted)]">
-                  Explore skills, agents, commands, plugins, and MCP servers shared by the community. Inspect each source before installing.
+                  Explore skills, agents, commands, skill packs, and MCP servers shared by the community. Inspect each source before installing.
                 </p>
               </div>
               <a href="https://github.com/kabirprokk/opencode-registry" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-10 items-center gap-2 rounded-md border border-[var(--line)] px-3 text-xs font-medium text-[var(--muted)] transition-colors hover:bg-[var(--surface-overlay)] hover:text-[var(--txt)]">
