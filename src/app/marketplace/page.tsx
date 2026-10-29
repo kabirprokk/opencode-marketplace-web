@@ -22,7 +22,7 @@ export default async function MarketplacePage() {
   const registry = await fetchRegistry();
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <MarketplaceHome packages={registry.packages} />
+      <MarketplaceHome packages={registry.packages} updated={registry.updated} />
     </Suspense>
   );
 }

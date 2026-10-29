@@ -5,6 +5,7 @@ import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { PackageCard } from "@/components/PackageCard";
+import { AgentPrompt } from "@/components/AgentPrompt";
 import { Package, PackageType } from "@/lib/registry";
 
 const TYPES: { value: PackageType | "all"; label: string }[] = [
@@ -18,7 +19,7 @@ const TYPES: { value: PackageType | "all"; label: string }[] = [
 
 const PAGE_SIZE = 24;
 
-export function MarketplaceHome({ packages }: { packages: Package[] }) {
+export function MarketplaceHome({ packages, updated }: { packages: Package[]; updated?: string }) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -79,6 +80,7 @@ export function MarketplaceHome({ packages }: { packages: Package[] }) {
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
+      <AgentPrompt packages={packages} updated={updated} />
       <main className="flex-1">
         <section id="packages" className="mx-auto max-w-7xl px-5 pb-16 pt-10 sm:px-6 sm:pb-20 sm:pt-14">
           <div className="border-b border-[var(--line)] pb-6">
