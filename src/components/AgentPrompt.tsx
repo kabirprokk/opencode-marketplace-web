@@ -13,6 +13,15 @@ export function AgentPrompt({
 }) {
   const [copied, setCopied] = useState(false);
 
+  const expandedSkills = useMemo(
+    () =>
+      packages.filter((p) => p.type === "skill").length +
+      packages
+        .filter((p) => p.type === "skill-pack")
+        .reduce((sum, p) => sum + (p.skill_count ?? 0), 0),
+    [packages],
+  );
+
   const prompt = useMemo(() => {
     const groups: Record<string, Package[]> = {};
     for (const pkg of packages) {
@@ -28,7 +37,7 @@ export function AgentPrompt({
     const lines: string[] = [];
     lines.push("You are working with OpenCode and have access to the community marketplace.");
     lines.push("New tools, skills, agents, commands, and MCP servers may have been added since your last update.");
-    lines.push(`Registry updated: ${updated || "latest"}. Total packages: ${packages.length}.`);
+    lines.push(`Registry updated: ${updated || "latest"}. Total packages: ${packages.length} (expands to ${expandedSkills} skills).`);
     lines.push("");
     lines.push("Use these resources when relevant. Install any of them with: ocm install <name>");
     lines.push("");
@@ -43,7 +52,7 @@ export function AgentPrompt({
     }
     lines.push("When the user asks for something covered above, prefer the matching package and install it with ocm before proceeding.");
     return lines.join("\n");
-  }, [packages, updated]);
+  }, [packages, updated, expandedSkills]);
 
   const copy = async () => {
     try {
@@ -103,7 +112,7 @@ export function AgentPrompt({
           className="mt-4 h-48 w-full resize-y rounded-md border border-[var(--line)] bg-[var(--bg)] p-3 font-mono text-xs leading-5 text-[var(--txt)] focus:outline-none"
         />
         <p className="mt-2 text-xs text-[var(--muted)]">
-          {packages.length} packages · updated {updated || "just now"}
+          {expandedSkills} skills available across {packages.length} packages · updated {updated || "just now"}
         </p>
       </div>
     </section>

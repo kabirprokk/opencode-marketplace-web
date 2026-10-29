@@ -8,6 +8,7 @@ export interface Package {
   author: string;
   repo: string;
   path?: string;
+  skill_count?: number;
   install: string;
   tags: string[];
   license: string;
