@@ -2,8 +2,10 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { Package, PackageType } from "@/lib/registry";
+import { Package, PackageType, Registry } from "@/lib/registry";
 import { PackageCard } from "@/components/PackageCard";
+import { RegistryStatus } from "@/components/RegistryStatus";
+import { useLiveRegistry } from "@/lib/useLiveRegistry";
 import { CheckIcon } from "@/components/TypeIcon";
 
 const TOPICS = [
@@ -79,7 +81,9 @@ function recommend(packages: Package[], selectedTopics: string[], type: PackageT
     .sort((a, b) => b.score - a.score || a.pkg.name.localeCompare(b.pkg.name))
 }
 
-export function PackageFinder({ packages }: { packages: Package[] }) {
+export function PackageFinder({ registry: snapshot }: { registry: Registry }) {
+  const { registry, isLive, isChecking } = useLiveRegistry(snapshot);
+  const packages = registry.packages;
   const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
   const [selectedType, setSelectedType] = useState<PackageType | "all">("all");
   const [submitted, setSubmitted] = useState(false);
@@ -110,6 +114,9 @@ export function PackageFinder({ packages }: { packages: Package[] }) {
 
   return (
     <>
+      <section className="mx-auto w-full max-w-7xl px-5 pt-8 sm:px-6 sm:pt-10">
+        <RegistryStatus registry={registry} isLive={isLive} isChecking={isChecking} />
+      </section>
       <section className="relative isolate overflow-hidden border-b border-[var(--line)]">
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_78%_20%,color-mix(in_srgb,var(--accent)_10%,transparent),transparent_38%)]" />
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 py-14 sm:px-6 sm:py-20 lg:grid-cols-[1.08fr_0.92fr] lg:gap-12 lg:py-24">

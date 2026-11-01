@@ -4,9 +4,13 @@ import { CategoryLinks } from "@/components/CategoryLinks";
 import { IntroVideo } from "@/components/IntroVideo";
 import { PackageFinder } from "@/components/PackageFinder";
 import { AgentPrompt } from "@/components/AgentPrompt";
-import { Package } from "@/lib/registry";
+import { Package, Registry } from "@/lib/registry";
 
-export function LandingHome({ packages, updated }: { packages: Package[]; updated?: string }) {
+export function LandingHome({ packages, updated, registry }: {
+  packages: Package[];
+  updated?: string;
+  registry: Registry;
+}) {
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
@@ -17,7 +21,7 @@ export function LandingHome({ packages, updated }: { packages: Package[]; update
           <h2 id="browse-by-type" className="mb-3 text-sm font-semibold text-[var(--txt)]">Browse OpenCode resources by type</h2>
           <CategoryLinks />
         </section>
-        <PackageFinder packages={packages} />
+        <PackageFinder registry={registry} />
       </main>
       <Footer />
     </div>

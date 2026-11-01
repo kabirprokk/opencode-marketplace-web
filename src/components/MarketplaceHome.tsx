@@ -1,12 +1,14 @@
 "use client";
 
-import { useState, useMemo, useEffect, useCallback } from "react";
-import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import { useState, useMemo, useEffect, useCallback, useRef } from "react";
+import { useRouter, usePathname } from "next/navigation";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { PackageCard } from "@/components/PackageCard";
 import { AgentPrompt } from "@/components/AgentPrompt";
-import { Package, PackageType } from "@/lib/registry";
+import { PackageType, Registry } from "@/lib/registry";
+import { RegistryStatus } from "@/components/RegistryStatus";
+import { useLiveRegistry } from "@/lib/useLiveRegistry";
 
 const TYPES: { value: PackageType | "all"; label: string }[] = [
   { value: "all", label: "All package types" },
@@ -19,29 +21,46 @@ const TYPES: { value: PackageType | "all"; label: string }[] = [
 
 const PAGE_SIZE = 24;
 
-export function MarketplaceHome({ packages, updated }: { packages: Package[]; updated?: string }) {
+export function MarketplaceHome({ registry: snapshot }: { registry: Registry }) {
+  const { registry, isLive, isChecking } = useLiveRegistry(snapshot);
+  const packages = registry.packages;
   const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
-
-  const [query, setQuery] = useState(searchParams.get("q") ?? "");
-  const [typeFilter, setTypeFilter] = useState<PackageType | "all">(
-    (searchParams.get("type") as PackageType | "all" | null) ?? "all",
-  );
+  const [query, setQuery] = useState("");
+  const [typeFilter, setTypeFilter] = useState<PackageType | "all">("all");
   const [sortBy, setSortBy] = useState<"name" | "author">("name");
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+  const skipUrlSync = useRef(true);
+
+  // Read URL filters after hydration so the full directory remains in the
+  // statically exported HTML instead of suspending behind a route-level shell.
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const initialType = params.get("type");
+    // This one-time URL-to-control sync must happen after hydration to keep
+    // the static HTML deterministic while preserving shareable filter links.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setQuery(params.get("q") ?? "");
+    setTypeFilter(TYPES.some((type) => type.value === initialType)
+      ? initialType as PackageType
+      : "all");
+  }, []);
 
   // Sync state -> URL (shareable filters)
   useEffect(() => {
-    const params = new URLSearchParams(searchParams.toString());
+    if (skipUrlSync.current) {
+      skipUrlSync.current = false;
+      return;
+    }
+    const params = new URLSearchParams(window.location.search);
     if (query) params.set("q", query); else params.delete("q");
     if (typeFilter !== "all") params.set("type", typeFilter); else params.delete("type");
     const next = params.toString();
-    const current = searchParams.toString();
+    const current = window.location.search.slice(1);
     if (next !== current) {
       router.replace(`${pathname}${next ? `?${next}` : ""}`, { scroll: false });
     }
-  }, [query, typeFilter, pathname, router, searchParams]);
+  }, [query, typeFilter, pathname, router]);
 
   const filtered = useMemo(() => {
     const q = query.toLowerCase();
@@ -80,7 +99,7 @@ export function MarketplaceHome({ packages, updated }: { packages: Package[]; up
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
-      <AgentPrompt packages={packages} updated={updated} />
+      <AgentPrompt packages={packages} updated={registry.updated} />
       <main className="flex-1">
         <section id="packages" className="mx-auto max-w-7xl px-5 pb-16 pt-10 sm:px-6 sm:pb-20 sm:pt-14">
           <div className="border-b border-[var(--line)] pb-6">
@@ -97,6 +116,10 @@ export function MarketplaceHome({ packages, updated }: { packages: Package[]; up
               <a href="https://github.com/kabirprokk/opencode-registry" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-10 items-center gap-2 rounded-md border border-[var(--line)] px-3 text-xs font-medium text-[var(--muted)] transition-colors hover:bg-[var(--surface-overlay)] hover:text-[var(--txt)]">
                 Registry source <span aria-hidden="true">↗</span>
               </a>
+            </div>
+
+            <div className="mt-6">
+              <RegistryStatus registry={registry} isLive={isLive} isChecking={isChecking} />
             </div>
 
             <div className="mt-6 grid gap-3 sm:grid-cols-[minmax(0,1fr)_160px_160px]">
